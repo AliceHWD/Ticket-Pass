@@ -40,11 +40,11 @@
                 <li><a href="./pesquisa.php">Procurar Ingressos</a></li>
                 <li><a href="./areaV.php">Anunciar Ingresso <i class="fa-solid fa-plus"></i></a></li>
                 <li><a href="./ingressoM.php">Meus Ingressos</a></li>
-                <li><a href="./login/cadastro.php">Cadastrar-se!</a></li>
+                <li><a href="/register">Cadastrar-se!</a></li>
             </ul>
 
             <div class="user-menu">
-                <a href="./login/cadastro.php">
+                <a href="/register">
                     <div class="quadro">
                         <i class="fa-solid fa-user"></i>
                     </div>
@@ -81,12 +81,16 @@
             </a>
         </div>
 
-        <div class="cadastro">
-            <a href="./login/cadastro.php">
-                Cadastrar-se!
-            </a>
-        </div>
+        @guest
+            <div class="cadastro">
+                <a href="/register">
+                    Cadastrar-se!
+                </a>
+                <a href="/login">Entrar</a>
+            </div>
+        @endguest
 
+        @auth
         <div class="perfil" id="profile">
             <div class="dropdown-container">
                 <button class="dropdown-button" onclick="toggleDropdown()">
@@ -94,8 +98,8 @@
                     <i class="fa-solid fa-user"></i>
                 </button>
                 <div id="dropdown-menu" class="dropdown-menu">
-                    <a href="./login/cadastro.php">Entrar</a>
-                    <a href="./perfil/perfil.php">Minha Conta</a>
+
+                    <a href="/dashboard">Minha Conta</a>
                     <a href="./ingressoM.php">Meus Ingressos</a>
                     <a href="./pesquisa.php">Procurar Ingressos</a>
                     <a href="#">Ajuda</a>
@@ -104,15 +108,16 @@
             </div>
 
         </div>
+        @endauth
     </header>
 
-<main>
-{{-- Colocar a flash message --}}
+    <main>
+        {{-- Colocar a flash message --}}
 
-@yield('conteudo')
-</main>
+        @yield('conteudo')
+    </main>
 
-<footer>
+    <footer>
         <div class="logo">
             <img src="imagens/logo.png" alt="">
             <h3>OpenPass</h3>

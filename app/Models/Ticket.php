@@ -13,7 +13,7 @@ class Ticket extends Model
 
     protected $fillable = [
         'title',
-        'lacation',
+        'location',
         'initial_price',
         'event_date',
         'negotiated_price',

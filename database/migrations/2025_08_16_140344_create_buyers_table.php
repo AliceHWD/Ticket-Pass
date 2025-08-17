@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('compradores', function (Blueprint $table) {
-            $table->id('id_comprador');
-            $table->foreignId('id_usuario')->constrained('usuarios', 'id_usuario')->onDelete('cascade');
+        Schema::create('buyers', function (Blueprint $table) {
+            $table->id('buyer_id');
+            $table->foreignId('user_id')->constrained('users', 'user_id')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('compradores');
+        Schema::dropIfExists('buyers');
     }
 };

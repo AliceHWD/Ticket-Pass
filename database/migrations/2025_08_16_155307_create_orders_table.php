@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->id('id_pedido');
+        Schema::create('orders', function (Blueprint $table) {
+            $table->id('order_id');
             $table->enum('status', ['concluído', 'pendente']);
-            $table->date('data_pedido');
-            $table->string('forma_pagamento');
-            $table->foreignId('id_comprador')->constrained('compradores', 'id_comprador')->onDelete('cascade');
+            $table->date('order_date');
+            $table->string('payment');
+            $table->foreignId('buyer_id')->constrained('buyers', 'buyer_id')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('orders');
     }
 };

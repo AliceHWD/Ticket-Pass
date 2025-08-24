@@ -14,7 +14,7 @@
 
     <header>
         <div class="logo">
-            <a href="/index.blade.php">
+            <a href="/">
                 <img src="../OpenPassOfc/imagens/logo.png" alt="">
                 <h3>Ticket Pass</h3>
             </a>

@@ -75,19 +75,23 @@
     </div>
     <div class="primeiros-ingressos">
 
-    @if (count($ingressos) > 0)
-        @for ($i = 0; $i < 5; $i++)
-            <a href="#" class="card-ingresso">
-                <img src="{{$ingressos[$i]['image']}}" alt="">
-                <p class="data">{{ $ingressos[$i]['event_date'] }}</p>
-                <p class="nome">{{ $ingressos[$i]['title'] }}</p>
-                <div class="lugar">
-                    <strong>R${{ $ingressos[$i]['initial_price'] }} </strong>
-                    {{ $ingressos[$i]['location'] }}
-                </div>
-            </a>
-        @endfor
-    @endif
+        @if (count($ingressos) > 0)
+            @for ($i = 0; $i < 5; $i++)
+                <a href="/tickets/{{ $ingressos[$i]['ticket_id'] }}" class="card-ingresso">
+                    <img src="{{ $ingressos[$i]['image'] }}" alt="">
+                    <p class="data">{{ $ingressos[$i]['event_date'] }}</p>
+                    <p class="nome">{{ $ingressos[$i]['title'] }}</p>
+                    <div class="lugar">
+                        <strong>R${{ $ingressos[$i]['initial_price'] }} </strong>
+                        {{ $ingressos[$i]['location'] }}
+                    </div>
+                </a>
+            @endfor
+        @else
+            <p>
+                Não há ingressos no momento
+            </p>
+        @endif
 
     </div>
 
@@ -112,8 +116,8 @@
 
         @if (count($ingressos) >= 5)
             @for ($i = 5; $i < count($ingressos); $i++)
-                <a href="#" class="card-ingresso">
-                    <img src="{{$ingressos[$i]['image']}}" alt="">
+                <a href="/tickets/{{ $ingressos[$i]['ticket_id'] }}" class="card-ingresso">
+                    <img src="{{ $ingressos[$i]['image'] }}" alt="">
                     <p class="data">{{ $ingressos[$i]['event_date'] }}</p>
                     <p class="nome">{{ $ingressos[$i]['title'] }}</p>
                     <div class="lugar">

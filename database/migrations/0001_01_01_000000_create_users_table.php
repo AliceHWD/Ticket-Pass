@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->date('birth')->nullable();
-            $table->string('cpf_cnpj')->unique();
+            $table->string('cpf_cnpj')->unique()->nullable();
             $table->string('telephone')->nullable();
             $table->timestamps();
         });

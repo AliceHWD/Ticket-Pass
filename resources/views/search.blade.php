@@ -14,50 +14,59 @@
 
     <div class="container">
         <aside class="filtros-btn">
-            <div class="filter-section">
-                <h3>Category</h3>
-                <div class="category-list">
-                    <label><input type="checkbox" checked> Toda as Categorias</label>
-                    <label><input type="checkbox"> Esportes</label>
-                    <label><input type="checkbox"> Cinema</label>
-                    <label><input type="checkbox"> Shows</label>
-                    <label><input type="checkbox"> Tours</label>
+            <form action="/filter" method="get">
+                @csrf
+                <div class="filter-section">
+                    <h3>Category</h3>
+                    <div class="category-list">
+                        <label><input type="checkbox" name="categories[]" value="esportes"> Esportes</label>
+                        <label><input type="checkbox" name="categories[]" value="cinema"> Cinema</label>
+                        <label><input type="checkbox" name="categories[]" value="Show"> Shows</label>
+                        <label><input type="checkbox" name="categories[]" value="tours"> Tours</label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="filter-section">
-                <h3>Data</h3>
-                <input type="date" style="width: 100%; padding: 0.5rem;">
-            </div>
-
-            <div class="filter-section">
-                <h3>Preço</h3>
-                <div class="price-inputs">
-                    <input type="number" placeholder="Mínimo">
-                    <input type="number" placeholder="Máximo">
+                <div class="filter-section">
+                    <h3>Data</h3>
+                    <input type="date" name="date" style="width: 100%; padding: 0.5rem;">
                 </div>
-            </div>
 
-            <div class="filter-section">
-                <h3>Localização</h3>
-                <input type="text" placeholder="Enter city or venue" style="width: 100%; padding: 0.5rem;">
-            </div>
+                <div class="filter-section">
+                    <h3>Preço</h3>
+                    <div class="price-inputs">
+                        <input type="number" placeholder="Mínimo" name="precoMinimo">
+                        <input type="number" placeholder="Máximo" name="precoMaximo">
+                    </div>
+                </div>
 
-            <button class="filter-button">Aplicar Filtros</button>
+                <div class="filter-section">
+                    <h3>Localização</h3>
+                    <input type="text" placeholder="Enter city or venue" name="localizacao"
+                        style="width: 100%; padding: 0.5rem;">
+                </div>
+
+                <button type="submit" class="filter-button">Aplicar Filtros</button>
+            </form>
+            <a href="/search">Limpar Filtros</a>
         </aside>
 
         <main class="main-content">
-            @foreach ($tickets as $ticket)
-                <div class="events-grid">
-                    <h1 class="detail-title">{{ $ticket->title }}</h1>
-                    <div class="detail-info">
-                        <div class="info-item">
-                            <span class="info-label">Date</span>
-                            <span class="info-value"></span>
+            @if (!empty($searchTerm))
+                <h2>Resultados de: {{ $searchTerm }}</h2>
+            @endif
+            <div class="events-grid">
+                @foreach ($tickets as $ticket)
+                    <a href="/tickets/{{ $ticket->ticket_id }}" class="card-ingresso">
+                        <img src="{{ $ticket->image }}" alt="">
+                        <p class="data">{{ $ticket->event_date }}</p>
+                        <p class="nome">{{ $ticket->title }}</p>
+                        <div class="lugar">
+                            <strong>R${{ $ticket->initial_price }} </strong>
+                            {{ $ticket->location }}
                         </div>
-                    </div>
-                </div>
-            @endforeach
+                    </a>
+                @endforeach
+            </div>
         </main>
 
         <div class="detail-view">

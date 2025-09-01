@@ -61,7 +61,7 @@
         </div>
 
         <div class="pesquisa">
-            <a href="./pesquisa.php">
+            <a href="/search">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 Pesquisar
             </a>
@@ -103,7 +103,7 @@
                     <a href="./ingressoM.php">Meus Ingressos</a>
                     <a href="./pesquisa.php">Procurar Ingressos</a>
                     <a href="#">Ajuda</a>
-                    <a href="../login/logout.php">Sair</a>
+                    {{-- <a href="http://127.0.0.1:8000/logout" method="post">Sair</a> --}}
                 </div>
             </div>
 
@@ -125,7 +125,7 @@
 
         <div class="menu-footer">
             <div class="pt-cima">
-                <a href="./pesquisa.php">Encontre Ingressos</a>
+                <a href="/search">Encontre Ingressos</a>
                 <a href="#">Cidades</a>
                 <a href="#">Categorias</a>
                 <a href="./areaV.php">Adicione seu ingresso</a>

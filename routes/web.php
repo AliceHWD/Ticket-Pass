@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [TicketController::class, 'index']);
 Route::get('/search', [TicketController::class, 'search']);
+Route::get('/filter', [TicketController::class, 'filter']);
 
 Route::get('/tickets/{id}', [TicketController::class, 'show']);
 

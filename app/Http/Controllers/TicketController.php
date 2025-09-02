@@ -18,7 +18,7 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = $this->ticketRepo->getTopTickets();
-        return view('index', ['ingressos' => $tickets->toArray()]);
+        return view('index', ['ingressos' => $tickets]);
     }
 
     public function search()

@@ -58,13 +58,13 @@
                 @foreach ($tickets as $ticket)
                     <a href="/tickets/{{ $ticket->ticket_id }}" class="card-ingresso">
                         <img src="{{ $ticket->image }}" alt="">
-                        <p class="data">{{ $ticket->event_date }}</p>
+                        <p class="data">{{ \Carbon\Carbon::parse($ticket->event_date)->format('d/m/Y') }}</p>
                         <p class="nome">{{ $ticket->title }}</p>
                         <div class="lugar">
                             <strong>R${{ $ticket->initial_price }} </strong>
                             {{ $ticket->location }}
                         </div>
-                    </a>
+                    </a> 
                 @endforeach
             </div>
         </main>

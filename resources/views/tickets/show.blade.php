@@ -1,14 +1,14 @@
 @extends('layouts.main')
 
 @section('titulo', 'Início')
-@section('css', '/css/ticket.css')
+@section('css', '/css/style.css')
 
 @section('conteudo')
 
-<div>
+<div class="content">
     <h2> {{ $ticket->title }} </h2>
     <p>Local: {{ $ticket->location }}</p>
-    <p>Data: {{ $ticket->event_date }}</p>
+    <p>{{ \Carbon\Carbon::parse($ticket->event_date)->format('d/m/Y') }}</p>
 </div>
 
 @endsection

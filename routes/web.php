@@ -7,6 +7,18 @@ Route::get('/', [TicketController::class, 'index']);
 Route::get('/search', [TicketController::class, 'search']);
 Route::get('/filter', [TicketController::class, 'filter']);
 
+Route::get('/vendas', function () {
+    return view('vendas');
+});
+
+Route::get('/carrinho', function () {
+    return view('carrinho');
+});
+
+Route::get('/pagamento', function () {
+    return view('pagamento');
+});
+
 Route::get('/tickets/{id}', [TicketController::class, 'show']);
 
 Route::middleware([

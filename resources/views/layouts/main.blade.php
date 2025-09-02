@@ -15,7 +15,7 @@
     <header>
         <div class="logo">
             <a href="/">
-                <img src="../OpenPassOfc/imagens/logo.png" alt="">
+                <img src="/img/logo.png" alt="">
                 <h3>Ticket Pass</h3>
             </a>
         </div>
@@ -38,7 +38,7 @@
 
             <ul>
                 <li><a href="./pesquisa.php">Procurar Ingressos</a></li>
-                <li><a href="./areaV.php">Anunciar Ingresso <i class="fa-solid fa-plus"></i></a></li>
+                <li><a href="/vendas">Anunciar Ingresso <i class="fa-solid fa-plus"></i></a></li>
                 <li><a href="./ingressoM.php">Meus Ingressos</a></li>
                 <li><a href="/register">Cadastrar-se!</a></li>
             </ul>
@@ -59,26 +59,27 @@
             </div>
 
         </div>
-
-        <div class="pesquisa">
-            <a href="/search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                Pesquisar
-            </a>
-        </div>
-
-        <div class="ingresso">
-            <a href="./areaV.php">
-                Anunciar Ingresso
-                <i class="fa-solid fa-plus"></i>
-            </a>
-        </div>
-
-        <div class="carrinho">
-            <a href="./cart.php">
-                Carrinho
-                <i class="fa-solid fa-cart-shopping"></i>
-            </a>
+        <div class="box-menu">
+            <div class="pesquisa">
+                <a href="/search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Pesquisar
+                </a>
+            </div>
+    
+            <div class="ingresso">
+                <a href="/vendas">
+                    Anunciar Ingresso
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            </div>
+    
+            <div class="carrinho">
+                <a href="/carrinho">
+                    Carrinho
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
         </div>
 
         @guest
@@ -119,8 +120,8 @@
 
     <footer>
         <div class="logo">
-            <img src="imagens/logo.png" alt="">
-            <h3>OpenPass</h3>
+            <img src="/img/logo.png" alt="">
+            <h3>TicketPass</h3>
         </div>
 
         <div class="menu-footer">

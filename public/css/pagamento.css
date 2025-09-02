@@ -37,7 +37,7 @@ header .menu-icon {
     display: none;
 }
 
-header .box-menu{
+header .box-menu {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -59,10 +59,9 @@ header .perfil {
     margin-right: 30%;
 }
 
-
 .cadastro a {
-    padding: 5px 10px;
     border-radius: 5px;
+    padding: 5px 10px;
     background-color: #5C7373;
     color: #ffffff;
     text-decoration: none;
@@ -243,186 +242,196 @@ header button p {
     color: red;
 }
 
-.slides-carrossel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+section {
+    height: 130vh;
 }
 
-.carousel {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-}
-
-.slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.slide {
-    min-width: 100%;
-    height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 2rem;
-}
-
-.navigation {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    margin: 0 5px;
-    background-color: #ccc;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.dot.active {
-    background-color: #333;
-}
-
-.topicos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.topicos-botoes {
-    display: grid;
-    grid-template-columns: repeat(7, 150px);
-    gap: 40px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-    text-align: center;
-}
-
-.topicos-botoes div a {
-    background-color: #d9d9d9;
-    width: 150px;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    background: white;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-.topicos-botoes a img {
-    width: 100px;
+h1 {
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.topicos-botoes div p {
-    margin-top: 10px;
+section .linha {
+    background-color: rgb(49, 49, 49);
+    width: 60%;
+    height: 1px;
+    margin-left: 20%;
 }
 
-.primeiros-ingressos {
-    margin-top: 100px;
-    display: grid;
-    grid-template-columns: repeat(5, 250px);
-    gap: 30px;
-    align-items: center;
-    justify-content: center;
+.payment-methods {
+    margin-bottom: 20px;
     text-align: center;
 }
 
-.card-ingresso {
-    border: solid 2px rgba(195, 195, 195, 0.48);
-    border-radius: 5px;
-    height: 300px;
+.payment-methods label {
+    margin-right: 40px;
+    font-weight: bold;
+}
+
+.form-container,
+.pix-container {
+    display: none;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
     padding: 10px;
-    transition: .3s;
-    text-decoration: none;
-    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.card-ingresso img {
-    width: 220px;
+.form-group input:focus {
+    border-color: #3b5998;
+    outline: none;
 }
 
-.card-ingresso p {
-    margin-top: 15px
+.saved-card {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
 }
 
-.data {
-    font-size: 1.3rem;
-    color: #1FB8EF;
-    font-weight: 600;
+.add-cartao {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    font-size: 1.2rem;
+    border-radius: 10px;
 }
 
-.nome {
-    font-size: 1.6rem;
-    font-weight: 700;
+.pix-container {
+    text-align: center;
 }
 
-.lugar {
-    font-weight: 300;
-    font-size: 1.1rem;
+.pix-qr {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pix-qr img {
+    width: 20%;
+}
+
+.pix-code {
     margin-top: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.card-ingresso:hover {
-    box-shadow: 0px 0px 18.4px rgba(0, 0, 0, 0.25);
+.pix-code input {
+    width: 90%;
 }
 
-.folder {
-    width: 100%;
-    text-align: center;
-    margin-top: 50px;
-    position: relative;
+.pix-code button {
+    padding: 5px 10px;
+    background: #3b5998;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.folder-img img {
-    width: 75%;
+.pix-code button:hover {
+    background: #2b4470;
 }
 
-.folder .text {
-    position: absolute;
-    top: 18%;
-    left: 18%;
-    text-transform: uppercase;
-    color: #ffffff;
-    text-align: left;
-}
-
-.folder h1 {
-    font-size: 3.3rem;
-    font-weight: 400;
-    font-family: "Poppins", serif;
-}
-
-.folder h1 span {
-    font-weight: 900;
-}
-
-.folder .text a {
-    position: absolute;
-    top: 120%;
-    background-color: #DCBD92;
-    border-radius: 10px;
-    padding: 15px;
-    width: 25%;
-    color: black;
-    text-decoration: none;
-    font-weight: 600;
-    text-align: center;
-}
-
-/* folder-mobile */
-.folder-img-Mob {
+.form-section {
+    flex: 1;
+    padding: 20px;
     display: none;
+}
+
+.card-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-left: 20px;
+    display: none;
+}
+
+.card {
+    width: 500px;
+    height: 280px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #3b5998, #192f6a);
+    color: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card .number,
+.card .name,
+.card .expiry {
+    font-size: 1.2rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    border-color: #3b5998;
+    outline: none;
+}
+
+.btn {
+    background: #3b5998;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background: #2b4470;
 }
 
 
@@ -434,6 +443,7 @@ footer {
     color: #fff;
     position: relative;
     margin-top: 100px;
+    top: 100%;
 }
 
 footer .logo {
@@ -448,8 +458,9 @@ footer .logo {
 footer .logo img {
     width: 15%;
     border-radius: 50%;
-    margin-right: 20px;
+    margin-right: 10px;
 }
+
 
 footer .menu-footer {
     position: absolute;
@@ -521,13 +532,13 @@ footer .redes-footer {
     font-size: 1rem;
 }
 
-.inicio a {
+.procura a {
     color: #82C6C6;
 }
 
-.anunciar a,
+.inicio a,
 .ingressos a,
-.procura a,
+.anunciar a,
 .perfil-mob a,
 .carrinho-footer a {
     color: #fff;
@@ -549,196 +560,4 @@ footer .redes-footer {
     font-size: 1.8rem;
     margin-left: 70px;
     color: #011F26;
-}
-
-.content {
-    height: 50vh;
-}
-
-@media (max-width: 1024px) {
-    .topicos-botoes {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .primeiros-ingressos {
-        grid-template-columns: repeat(3, 250px);
-    }
-
-    .folder h1 {
-        font-size: 2rem;
-    }
-
-    .folder .text a {
-        width: 50%;
-    }
-
-    header {
-        font-size: .9rem;
-    }
-
-    header button {
-        font-size: .8rem;
-    }
-
-}
-
-@media (max-width: 880px) {
-    header {
-        grid-template-columns: repeat(2, 1fr);
-
-    }
-
-    header .logo {
-        grid-column: 2;
-        margin-left: 50%;
-    }
-
-    header .logo img {
-        width: 80px;
-    }
-
-    header .menu-icon {
-        display: block;
-        grid-column: 1;
-        grid-row: 1;
-        position: absolute;
-        left: 10%;
-    }
-
-    .sidebar {
-        display: block;
-    }
-
-    header .logo h3,
-    .pesquisa,
-    .local,
-    .ingresso,
-    .carrinho,
-    .cadastro a,
-    .perfil button {
-        display: none;
-    }
-
-    .primeiros-ingressos {
-        gap: 10px;
-    }
-
-    .folder-img .text h1 {
-        font-size: 1.5rem;
-    }
-}
-
-@media (max-width: 450px) {
-    .carousel {
-        max-width: 400px;
-    }
-
-    .topicos-botoes {
-        grid-template-columns: repeat(2, 160px);
-    }
-
-    .primeiros-ingressos {
-        grid-template-columns: repeat(1, 250px);
-
-    }
-
-    .card-ingresso img {
-        width: 200px;
-    }
-
-    footer {
-        display: none;
-    }
-
-    .folder-img {
-        display: none;
-    }
-
-    .folder-img-Mob {
-        display: block;
-    }
-
-    .folder-img-Mob img {
-        width: 420px;
-    }
-
-    .text-mob {
-        position: absolute;
-        top: 60%;
-        left: 12%;
-        text-transform: uppercase;
-        color: white;
-    }
-
-    .text-mob h1 {
-        font-size: 1.7rem;
-    }
-
-    .text-mob a {
-        padding: 10px;
-        background-color: #DCBD92;
-        color: black;
-        text-decoration: none;
-        border-radius: 10px;
-        position: absolute;
-        top: 130%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .footer-mob {
-        display: block;
-    }
-}
-
-@media (max-width: 425px) {
-    .folder-img-Mob img {
-        width: 380px;
-    }
-
-    .text-mob {
-        left: 6%;
-    }
-
-}
-
-@media (max-width:375px) {
-    .footer-mob {
-        top: 90%;
-    }
-
-    .sidebar {
-        width: 70%;
-    }
-
-    .sidebar ul li a {
-        font-size: 1rem;
-
-    }
-
-    .topicos-botoes {
-        display: none;
-    }
-
-    .folder-img-Mob img {
-        width: 300px;
-    }
-
-    .text-mob {
-        left: 18%;
-    }
-
-    .text-mob h1 {
-        font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 321px) {
-    .logo-menu h3 {
-        font-size: 1.2rem;
-    }
-
-    .quadro {
-        background: none;
-    }
 }

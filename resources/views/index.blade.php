@@ -76,17 +76,17 @@
     <div class="primeiros-ingressos">
 
         @if (count($ingressos) > 0)
-            @for ($i = 0; $i < 5; $i++)
-                <a href="/tickets/{{ $ingressos[$i]['ticket_id'] }}" class="card-ingresso">
-                    <img src="{{ $ingressos[$i]['image'] }}" alt="">
-                    <p class="data">{{ $ingressos[$i]['event_date'] }}</p>
-                    <p class="nome">{{ $ingressos[$i]['title'] }}</p>
+            @foreach($ingressos as $ingresso)
+                <a href="/tickets/{{ $ingresso->ticket_id}}" class="card-ingresso">
+                    <img src="{{ $ingresso->image }}" alt="">
+                    <p>{{ \Carbon\Carbon::parse($ingresso->event_date)->format('d/m/Y') }}</p>
+                    <p class="nome">{{ $ingresso->title }}</p>
                     <div class="lugar">
-                        <strong>R${{ $ingressos[$i]['initial_price'] }} </strong>
-                        {{ $ingressos[$i]['location'] }}
+                        <strong>R${{ $ingresso->initial_price }} </strong>
+                        {{ $ingresso->location }}
                     </div>
                 </a>
-            @endfor
+            @endforeach
         @else
             <p>
                 Não há ingressos no momento
@@ -99,14 +99,14 @@
         <div class="folder-img">
             <img src="../img/folder.png" alt="">
             <div class="text">
-                <h1><span>publique</span> seu ingresso <br> com a <span>openpass!</span></h1>
+                <h1><span>publique</span> seu ingresso <br> com a <span>ticketpass!</span></h1>
                 <a href="./areaV.php">Anunciar</a>
             </div>
         </div>
         <div class="folder-img-Mob">
-            <img src="../OpenPassOfc/imagens/folder-mobile.png" alt="">
+            <img src="../img/folder-mobile.png" alt="">
             <div class="text-mob">
-                <h1><span>publique</span> seu ingresso <br> com a <span>openpass!</span></h1>
+                <h1><span>publique</span> seu ingresso <br> com a <span>ticketpass!</span></h1>
                 <a href="./areaV.php">Anunciar</a>
             </div>
         </div>
@@ -114,11 +114,11 @@
 
     <div class="primeiros-ingressos">
 
-        @if (count($ingressos) >= 5)
+       {{-- @if (count($ingressos) >= 5)
             @for ($i = 5; $i < count($ingressos); $i++)
                 <a href="/tickets/{{ $ingressos[$i]['ticket_id'] }}" class="card-ingresso">
                     <img src="{{ $ingressos[$i]['image'] }}" alt="">
-                    <p class="data">{{ $ingressos[$i]['event_date'] }}</p>
+                    <p class="data">{{ date('d/m/Y', strtotime($ingressos[$i]['event_date'])) }}</p>
                     <p class="nome">{{ $ingressos[$i]['title'] }}</p>
                     <div class="lugar">
                         <strong>R${{ $ingressos[$i]['initial_price'] }} </strong>
@@ -126,7 +126,7 @@
                     </div>
                 </a>
             @endfor
-        @endif
+        @endif  --}}
 
         </main>
 

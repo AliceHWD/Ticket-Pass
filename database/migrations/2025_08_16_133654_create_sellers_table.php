@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id('seller_id');
-            $table->foreignId('user_id')->constrained('users', 'user_id')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('rating')->nullable();
-            $table->string('level');
+            $table->string('level')->nullable();
             $table->string('cep');
             $table->integer('house_number');
             $table->string('complement')->nullable();

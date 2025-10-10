@@ -32,26 +32,15 @@ class TicketController extends Controller
         ]);
     }
 
-    // 📅 Método auxiliar para converter data
-    private function formatDate($date)
+    public function filter(Request $request)
     {
-        if (empty($date)) {
-            return null;
-        }
-
-        // Converte dd/mm/yyyy para yyyy-mm-dd
-        return \Carbon\Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
-    }
-
-    public function filter()
-    {
-        $filters = [
-            'date' => request('date'),
-            'precoMinimo' => request('precoMinimo'),
-            'precoMaximo' => request('precoMaximo'),
-            'location' => request('localizacao'),
-            'categories' => $this->getSelectedCategories()
-        ];
+        $filters = $request->validate([
+            'date' => 'nullable|date',
+            'precoMinimo' => 'nullable|decimal:2',
+            'precoMaximo' => 'nullable|decimal:2',
+            'location' => 'nullable|string|max:255',
+            'categories' => 'nullable|array'
+        ]);
 
         $tickets = $this->ticketRepo->filterTickets($filters);
 
@@ -61,17 +50,29 @@ class TicketController extends Controller
         ]);
     }
 
-    private function getSelectedCategories()
-    {
-        $categories = request('categories', []);
-
-        // Retorna apenas as categorias selecionadas
-        return $categories;
-    }
-
     public function show($id)
     {
         $ticket = $this->ticketRepo->findById($id);
         return view('tickets.show', ['ticket' => $ticket]);
+    }
+
+    public function create()
+    {
+        return view('tickets.create');
+    }
+
+    public function store()
+    {
+        $data = request()->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'date' => 'required|date',
+            'location' => 'required|string|max:255',
+            'price' => 'required|decimal:2',
+            'categories' => 'nullable|array'
+        ]);
+
+        $ticket = $this->ticketRepo->create($data);
+        return view('tickets.create');
     }
 }

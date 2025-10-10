@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('titulo')</title>
 
-    <link rel="stylesheet" href="/css/main.css"> <!-- colocar css só pros header e rodaé com esse nome -->
+    <link rel="stylesheet" href="/css/style.css"> <!-- colocar css só pros header e rodaé com esse nome -->
     <link rel="stylesheet" href="@yield('css')">
 </head>
 
@@ -38,7 +38,7 @@
 
             <ul>
                 <li><a href="./pesquisa.php">Procurar Ingressos</a></li>
-                <li><a href="/vendas">Anunciar Ingresso <i class="fa-solid fa-plus"></i></a></li>
+                <li><a href="/tickets/create">Anunciar Ingresso <i class="fa-solid fa-plus"></i></a></li>
                 <li><a href="./ingressoM.php">Meus Ingressos</a></li>
                 <li><a href="/register">Cadastrar-se!</a></li>
             </ul>
@@ -68,7 +68,7 @@
             </div>
     
             <div class="ingresso">
-                <a href="/vendas">
+                <a href="/tickets/create">
                     Anunciar Ingresso
                     <i class="fa-solid fa-plus"></i>
                 </a>

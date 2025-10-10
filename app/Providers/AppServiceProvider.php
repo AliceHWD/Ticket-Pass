@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
 use App\Repositories\TicketRepository;
+use App\Repositories\Interfaces\SellerRepositoryInterface;
+use App\Repositories\SellerRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +15,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             TicketRepositoryInterface::class,
             TicketRepository::class
+        );
+
+        $this->app->bind(
+            SellerRepositoryInterface::class,
+            SellerRepository::class
         );
     }
 

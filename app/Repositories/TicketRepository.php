@@ -73,4 +73,9 @@ class TicketRepository implements TicketRepositoryInterface
     {
         return $this->model->findOrFail($id);
     }
+
+    public function create($data)
+    {
+        return $this->model->create($data);
+    }
 }

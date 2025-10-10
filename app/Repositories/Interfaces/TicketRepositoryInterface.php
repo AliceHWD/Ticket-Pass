@@ -8,4 +8,5 @@ interface TicketRepositoryInterface
     public function filterTickets($filters);
     public function searchTickets($search);
     public function findById($id);
+    public function create($data);
 }

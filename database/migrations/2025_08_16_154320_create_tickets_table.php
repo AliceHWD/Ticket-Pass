@@ -18,10 +18,12 @@ return new class extends Migration
             $table->decimal('initial_price', 10, 2);
             $table->date('event_date');
             $table->decimal('negotiated_price', 10, 2)->nullable();
-            $table->string('event_type');
-            $table->string('description');
-            $table->enum('status', ['vendido', 'à venda']);
-            $table->string('image');
+            $table->enum('event_type', ['inteira', 'meia']);
+            $table->enum('category', ['Festa', 'Show', 'Esportes', 'Palestra', 'Lazer', 'Cultura', 'Outro']);
+            $table->string('description')->nullable();
+            $table->string('cep');
+            $table->integer('quantity');
+            $table->integer('location_number');
             $table->timestamps();
             $table->foreignId('seller_id')->constrained('sellers', 'seller_id')->onDelete('cascade');
         });

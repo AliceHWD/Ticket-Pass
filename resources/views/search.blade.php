@@ -14,6 +14,8 @@
 
     <div class="container">
         <aside class="filtros-btn">
+            
+
             <form action="/filter" method="get">
                 @csrf
                 <div class="filter-section">
@@ -55,6 +57,9 @@
                 <h2>Resultados de: {{ $searchTerm }}</h2>
             @endif
             <div class="events-grid">
+                @if (!empty($tickets))
+                    <h2>Não há ingressos no momento</h2>
+                @endif
                 @foreach ($tickets as $ticket)
                     <a href="/tickets/{{ $ticket->ticket_id }}" class="card-ingresso">
                         <img src="{{ $ticket->image }}" alt="">

@@ -78,4 +78,22 @@ class TicketRepository implements TicketRepositoryInterface
     {
         return $this->model->create($data);
     }
+
+    public function update($id, $data)
+    {
+        $ticket = $this->model->findOrFail($id);
+        $ticket->update($data);
+        return $ticket;
+    }
+
+    public function delete($id)
+    {
+        return $this->model->findOrFail($id)->delete();
+    }
+
+    public function canDelete($id)
+    {
+        $ticket = $this->model->findOrFail($id);
+        return $ticket->status !== 'Vendido';
+    }
 }

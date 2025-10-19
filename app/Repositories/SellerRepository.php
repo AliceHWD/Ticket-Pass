@@ -18,4 +18,9 @@ class SellerRepository implements SellerRepositoryInterface
     {
         return $this->model->create($data);
     }
+
+    public function findByUserId($userId)
+    {
+        return $this->model->where('user_id', $userId)->first();
+    }
 }

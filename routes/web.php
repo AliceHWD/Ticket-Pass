@@ -1,20 +1,38 @@
 <?php
 
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
+// Events
+Route::get('/', [EventController::class, 'index']);
+Route::get('/search', [EventController::class, 'search']);
+Route::get('/filter', [EventController::class, 'filter']);
+Route::get('/events/create', [EventController::class, 'create'])->name('events.create')->middleware('seller');
+Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
+Route::get('/events/{id}/edit', [EventController::class, 'edit'])->name('events.edit')->middleware('seller');
+Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update')->middleware('seller');
+Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy')->middleware('seller');
+Route::post('/events', [EventController::class, 'store']);
+
 // Tickets
-Route::get('/', [TicketController::class, 'index']);
-Route::get('/search', [TicketController::class, 'search']);
-Route::get('/filter', [TicketController::class, 'filter']);
+// Route::post('/events/{id}/tickets', [EventController::class, 'buyTicket']);
 Route::get('/tickets/create', [TicketController::class, 'create'])->name('tickets.create')->middleware('seller');
-Route::get('/tickets/{id}', [TicketController::class, 'show']);
+Route::get('/tickets/{id}/edit', [TicketController::class, 'edit'])->name('tickets.edit')->middleware('seller');
+Route::put('/tickets/{id}', [TicketController::class, 'update'])->name('tickets.update')->middleware('seller');
+Route::delete('/tickets/{id}', [TicketController::class, 'destroy'])->name('tickets.destroy')->middleware('seller');
 Route::post('/tickets', [TicketController::class, 'store']);
+
+Route::get('/my-tickets', function () {
+    return view('my-tickets');
+});
+
 
 // Seller
 Route::get('/seller/create', [SellerController::class, 'create'])->name('seller.create')->middleware('auth');
-Route::post('/seller', [SellerController::class, 'store']);
+Route::post('/seller', [SellerController::class, 'store'])->middleware('auth');
+Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.index')->middleware('auth');
 
 Route::get('/carrinho', function () {
     return view('carrinho');
@@ -24,7 +42,7 @@ Route::get('/pagamento', function () {
     return view('pagamento');
 });
 
-
+// Jetsream
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

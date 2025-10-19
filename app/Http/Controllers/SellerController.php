@@ -3,20 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Interfaces\SellerRepositoryInterface;
+use App\Repositories\Interfaces\EventRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 
 class SellerController extends Controller
 {
     protected $sellerRepo;
+    protected $eventRepo;
 
-    public function __construct(SellerRepositoryInterface $sellerRepo)
+    public function __construct(SellerRepositoryInterface $sellerRepo, EventRepositoryInterface $eventRepo)
     {
         $this->sellerRepo = $sellerRepo;
+        $this->eventRepo = $eventRepo;
     }
 
     public function index()
     {
-        // return view('seller.index');
+        $seller = $this->sellerRepo->findByUserId(Auth::id());
+        
+        if (!$seller) {
+            return redirect()->route('seller.create');
+        }
+        
+        $events = $this->eventRepo->getEventsBySeller($seller->seller_id);
+        
+        return view('seller.index', compact('events'));
     }
 
     public function create()
@@ -36,6 +47,6 @@ class SellerController extends Controller
 
         $this->sellerRepo->create($data);
 
-        return view('tickets.create');
+        return view('events.create');
     }
 }

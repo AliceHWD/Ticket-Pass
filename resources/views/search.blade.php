@@ -14,7 +14,7 @@
 
     <div class="container">
         <aside class="filtros-btn">
-            
+
 
             <form action="/filter" method="get">
                 @csrf
@@ -57,20 +57,22 @@
                 <h2>Resultados de: {{ $searchTerm }}</h2>
             @endif
             <div class="events-grid">
-                @if (!empty($tickets))
+                @if ($events)
+                    @foreach ($events as $event)
+                        <a href="/events/{{ $event->event_id }}" class="card-ingresso">
+                            <img src="{{ $event->image }}" alt="">
+                            <p class="data">{{ \Carbon\Carbon::parse($event->start_event_date)->format('d/m/Y') }}</p>
+                            <p class="nome">{{ $event->title }}</p>
+                            <div class="lugar">
+                                <strong>R${{ $event->initial_price }} </strong>
+                                {{ $event->location }}
+                            </div>
+                        </a>
+                    @endforeach
+                @else
                     <h2>Não há ingressos no momento</h2>
                 @endif
-                @foreach ($tickets as $ticket)
-                    <a href="/tickets/{{ $ticket->ticket_id }}" class="card-ingresso">
-                        <img src="{{ $ticket->image }}" alt="">
-                        <p class="data">{{ \Carbon\Carbon::parse($ticket->event_date)->format('d/m/Y') }}</p>
-                        <p class="nome">{{ $ticket->title }}</p>
-                        <div class="lugar">
-                            <strong>R${{ $ticket->initial_price }} </strong>
-                            {{ $ticket->location }}
-                        </div>
-                    </a> 
-                @endforeach
+
             </div>
         </main>
 

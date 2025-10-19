@@ -16,7 +16,7 @@
         <div class="logo">
             <a href="/">
                 <img src="/img/logo.png" alt="">
-                <h3>Ticket Pass</h3>
+                <h3>TicketPass</h3>
             </a>
         </div>
 
@@ -38,8 +38,11 @@
 
             <ul>
                 <li><a href="./pesquisa.php">Procurar Ingressos</a></li>
-                <li><a href="/tickets/create">Anunciar Ingresso <i class="fa-solid fa-plus"></i></a></li>
-                <li><a href="./ingressoM.php">Meus Ingressos</a></li>
+                <li><a href="/events/create">Anunciar Ingresso <i class="fa-solid fa-plus"></i></a></li>
+                <li><a href="/my-tickets">Meus Ingressos</a></li>
+                {{-- @auth('seller') --}}
+                    <li><a href="/seller/index">Área vendedor</a></li>
+                {{-- @endauth --}}
                 <li><a href="/register">Cadastrar-se!</a></li>
             </ul>
 
@@ -66,14 +69,14 @@
                     Pesquisar
                 </a>
             </div>
-    
+
             <div class="ingresso">
-                <a href="/tickets/create">
+                <a href="/events/create">
                     Anunciar Ingresso
                     <i class="fa-solid fa-plus"></i>
                 </a>
             </div>
-    
+
             <div class="carrinho">
                 <a href="/carrinho">
                     Carrinho
@@ -92,23 +95,24 @@
         @endguest
 
         @auth
-        <div class="perfil" id="profile">
-            <div class="dropdown-container">
-                <button class="dropdown-button" onclick="toggleDropdown()">
-                    Perfil
-                    <i class="fa-solid fa-user"></i>
-                </button>
-                <div id="dropdown-menu" class="dropdown-menu">
+            <div class="perfil" id="profile">
+                <div class="dropdown-container">
+                    <button class="dropdown-button" onclick="toggleDropdown()">
+                        Perfil
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                    <div id="dropdown-menu" class="dropdown-menu">
 
-                    <a href="/dashboard">Minha Conta</a>
-                    <a href="./ingressoM.php">Meus Ingressos</a>
-                    <a href="./pesquisa.php">Procurar Ingressos</a>
-                    <a href="#">Ajuda</a>
-                    {{-- <a href="http://127.0.0.1:8000/logout" method="post">Sair</a> --}}
+                        <a href="/dashboard">Minha Conta</a>
+                        <a href="/my-tickets">Meus Ingressos</a>
+                        <li><a href="/seller/index">Área vendedor</a></li>
+                        <a href="./pesquisa.php">Procurar Ingressos</a>
+                        <a href="#">Ajuda</a>
+                        {{-- <a href="/logout" method="post">Sair</a> --}}
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
         @endauth
     </header>
 

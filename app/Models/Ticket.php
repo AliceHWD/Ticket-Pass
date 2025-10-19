@@ -10,27 +10,23 @@ class Ticket extends Model
     use HasFactory;
 
     protected $primaryKey = 'ticket_id';
+    public $timestamps = false;
 
     protected $fillable = [
-        'title',
-        'location',
         'initial_price',
-        'event_date',
-        'negotiated_price',
-        'event_type',
-        'description',
-        'buyer_id',
+        'event_id',
+        'code',
         'status',
-        'image'
+        'descricao'
     ];
 
-    public function seller()
+    public function event()
     {
-        return $this->belongsTo('App\Models\Seller');
+        return $this->belongsTo('App\Models\Event', 'event_id', 'event_id');
     }
 
     public function orders()
     {
-        return $this->belongsToMany('App\Models\Order', 'order_items', 'ticket_id', 'order_id')->withPivot('quantity');
+        return $this->belongsToMany('App\Models\Order', 'order_items', 'ticket_id', 'order_id');
     }
 }

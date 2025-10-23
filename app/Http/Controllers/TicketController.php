@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
 use App\Repositories\Interfaces\EventRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -61,7 +62,7 @@ class TicketController extends Controller
         $ticket = $this->ticketRepo->findById($id);
         $event = $this->eventRepo->findById($ticket->event_id);
         
-        if ($event->seller_id != \Auth::id()) {
+        if ($event->seller_id != Auth::id()) {
             abort(403, 'Você não tem permissão para editar este ingresso.');
         }
         
@@ -73,7 +74,7 @@ class TicketController extends Controller
         $ticket = $this->ticketRepo->findById($id);
         $event = $this->eventRepo->findById($ticket->event_id);
         
-        if ($event->seller_id != \Auth::id()) {
+        if ($event->seller_id != Auth::id()) {
             abort(403, 'Você não tem permissão para editar este ingresso.');
         }
         
@@ -93,7 +94,7 @@ class TicketController extends Controller
         $ticket = $this->ticketRepo->findById($id);
         $event = $this->eventRepo->findById($ticket->event_id);
         
-        if ($event->seller_id != \Auth::id()) {
+        if ($event->seller_id != Auth::id()) {
             abort(403, 'Você não tem permissão para deletar este ingresso.');
         }
         

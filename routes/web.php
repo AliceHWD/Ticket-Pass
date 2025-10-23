@@ -1,14 +1,17 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
-// Events
 Route::get('/', [EventController::class, 'index']);
 Route::get('/search', [EventController::class, 'search']);
 Route::get('/filter', [EventController::class, 'filter']);
+
+// Events
 Route::get('/events/create', [EventController::class, 'create'])->name('events.create')->middleware('seller');
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events/{id}/edit', [EventController::class, 'edit'])->name('events.edit')->middleware('seller');
@@ -17,7 +20,6 @@ Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events
 Route::post('/events', [EventController::class, 'store']);
 
 // Tickets
-// Route::post('/events/{id}/tickets', [EventController::class, 'buyTicket']);
 Route::get('/tickets/create', [TicketController::class, 'create'])->name('tickets.create')->middleware('seller');
 Route::get('/tickets/{id}/edit', [TicketController::class, 'edit'])->name('tickets.edit')->middleware('seller');
 Route::put('/tickets/{id}', [TicketController::class, 'update'])->name('tickets.update')->middleware('seller');
@@ -34,9 +36,15 @@ Route::get('/seller/create', [SellerController::class, 'create'])->name('seller.
 Route::post('/seller', [SellerController::class, 'store'])->middleware('auth');
 Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.index')->middleware('auth');
 
-Route::get('/carrinho', function () {
-    return view('carrinho');
-});
+// Cart
+Route::get('/carrinho', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+// Checkout
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+
+
 
 Route::get('/pagamento', function () {
     return view('pagamento');

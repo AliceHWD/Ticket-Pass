@@ -22,13 +22,6 @@
     <div class="topicos">
         <div class="topicos-botoes">
 
-            <div class="festa">
-                <a href="./festa.php">
-                    <img src="./img/festa.png" alt="">
-                </a>
-                <p>Festa e festivais</p>
-            </div>
-
             <div class="shows">
                 <a href="./shows.php">
                     <img src="./img/show-icon.png" alt="">
@@ -41,6 +34,13 @@
                     <img src="./img/esporte-icon.png" alt="">
                 </a>
                 <p>Esportes</p>
+            </div>
+
+            <div class="festa">
+                <a href="./festa.php">
+                    <img src="./img/festa.png" alt="">
+                </a>
+                <p>Festa e festivais</p>
             </div>
 
             <div class="palestra">
@@ -104,21 +104,21 @@
             <img src="../img/folder.png" alt="">
             <div class="text">
                 <h1><span>publique</span> seu ingresso <br> com a <span>ticketpass!</span></h1>
-                <a href="./areaV.php">Anunciar</a>
+                <a href="/events/create">Anunciar</a>
             </div>
         </div>
         <div class="folder-img-Mob">
             <img src="../img/folder-mobile.png" alt="">
             <div class="text-mob">
                 <h1><span>publique</span> seu ingresso <br> com a <span>ticketpass!</span></h1>
-                <a href="./areaV.php">Anunciar</a>
+                <a href="/events/create">Anunciar</a>
             </div>
         </div>
     </div>
 
     <div class="primeiros-ingressos">
 
-       {{-- @if (count($ingressos) >= 5)
+        @if (count($ingressos) >= 5)
             @for ($i = 5; $i < count($ingressos); $i++)
                 <a href="/events/{{ $ingressos[$i]['event_id'] }}" class="card-ingresso">
                     <img src="{{ $ingressos[$i]['image'] }}" alt="">
@@ -130,7 +130,7 @@
                     </div>
                 </a>
             @endfor
-        @endif  --}}
+        @endif  
 
         </main>
 

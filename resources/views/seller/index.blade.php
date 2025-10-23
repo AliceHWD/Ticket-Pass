@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('titulo', 'Meus Eventos')
-@section('css', '')
+@section('css', '/css/my-events.css')
 
 @section('conteudo')
 <div class="container mt-4">

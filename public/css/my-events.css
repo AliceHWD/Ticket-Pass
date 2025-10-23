@@ -1,0 +1,191 @@
+/* Reset e Tipografia Global */
+* {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: #fafbfc;
+    color: #1a202c;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Header da Página */
+.container h2 {
+    color: #1a202c;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    letter-spacing: -0.025em;
+}
+
+/* Cards de Eventos */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+/* Efeitos Hover */
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e0;
+}
+
+/* Card Body */
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Título do Card */
+.card-title {
+    color: #1a202c;
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+/* Texto dos Cards */
+.card-text {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Datas */
+.card-text small.text-muted {
+    color: #4299e1 !important;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Localização */
+.card-text:nth-child(3) {
+    color: #718096;
+    font-size: 0.875rem;
+}
+
+/* Preço */
+.card-text strong {
+    color: #38a169;
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+/* Ingressos Disponíveis */
+.card-text:last-child small {
+    color: #a0aec0 !important;
+    font-size: 0.8rem;
+}
+
+/* Card Footer */
+.card-footer {
+    background-color: #f7fafc;
+    border-top: 1px solid #e2e8f0;
+    padding: 1rem 1.5rem;
+}
+
+/* Botões */
+.btn-primary {
+    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(66, 153, 225, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+/* Ícones */
+.fas {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+/* Estado Vazio */
+.alert-info {
+    background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+    color: #2b6cb0;
+    border: 1px solid #90cdf4;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.alert-info h4 {
+    color: #2c5282;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.alert-info p {
+    color: #4299e1;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Layout Responsivo */
+@media (max-width: 991.98px) {
+    .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .container h2 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .container {
+        padding: 1rem 0.75rem;
+    }
+    
+    .container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .card-body {
+        padding: 1.25rem;
+    }
+    
+    .card-footer {
+        padding: 0.75rem 1.25rem;
+    }
+}

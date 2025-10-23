@@ -1,0 +1,293 @@
+/* Reset e Tipografia Global */
+* {
+    font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Container Principal */
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Título Principal do Evento */
+.content h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e1e1e;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 15px;
+}
+
+/* Subtítulos */
+.content h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 30px 0 15px 0;
+    border-left: 4px solid #007BFF;
+    padding-left: 15px;
+}
+
+.content h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* Informações do Evento */
+.content > p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.content > p:last-of-type {
+    border-bottom: none;
+}
+
+/* Destacar labels das informações */
+.content > p::before {
+    font-weight: 600;
+    color: #555;
+}
+
+/* Card do Vendedor */
+.event-seller {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 25px 0;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+    border-left: 4px solid #28a745;
+}
+
+.event-seller h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.event-seller p {
+    color: #495057;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.seller-level {
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 8px;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+/* Ações do Vendedor */
+.seller-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+    justify-content: center;
+}
+
+/* Lista de Ingressos */
+.tickets-list {
+    display: grid;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Item de Ingresso */
+.ticket-item {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    border-left: 4px solid #007BFF;
+}
+
+.ticket-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    border-left-color: #0056b3;
+}
+
+.ticket-item p {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #495057;
+}
+
+.ticket-item strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.ticket-item hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, #e9ecef, transparent);
+    margin: 15px 0 0 0;
+}
+
+/* Ações dos Ingressos */
+.ticket-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+    justify-content: flex-start;
+}
+
+/* Botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3, #004085);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+    color: white;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    color: white;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #1e7e34, #155724);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+    color: white;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c82333, #a71e2a);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+    color: white;
+}
+
+.btn-sm {
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+/* Ícones */
+.fas {
+    font-size: 14px;
+}
+
+/* Mensagem quando não há ingressos */
+.content > p:last-child {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .content {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    .content h2 {
+        font-size: 24px;
+    }
+    
+    .content h3 {
+        font-size: 20px;
+    }
+    
+    .seller-actions {
+        flex-direction: column;
+    }
+    
+    .ticket-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .ticket-item {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        margin: 5px;
+        padding: 12px;
+    }
+    
+    .content h2 {
+        font-size: 22px;
+    }
+    
+    .event-seller {
+        padding: 15px;
+    }
+    
+    .ticket-item {
+        padding: 12px;
+    }
+}

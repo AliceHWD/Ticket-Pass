@@ -66,7 +66,7 @@ class EventRepository implements EventRepositoryInterface
             $query->where('title', 'like', '%' . $search . '%');
         }
 
-        return $query->get();
+        return $query->with('tickets')->get();
     }
 
     public function findById($id)

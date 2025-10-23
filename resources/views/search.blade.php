@@ -8,6 +8,9 @@
         <div class="search-bar">
             <form action="/search" method="get">
                 <input type="text" placeholder="Buscar" name="search">
+                <button type="submite" id="btn-busca">
+                    <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+                </button>
             </form>
         </div>
     </div>
@@ -64,10 +67,17 @@
                             <p class="data">{{ \Carbon\Carbon::parse($event->start_event_date)->format('d/m/Y') }}</p>
                             <p class="nome">{{ $event->title }}</p>
                             <div class="lugar">
-                                <strong>R${{ $event->initial_price }} </strong>
+
+                                @if ($event->tickets->count() > 0)
+                                    <strong>A partir de R$
+                                        {{ number_format($event->tickets->min('initial_price'), 2, ',', '.') }}</strong>
+                                @else
+                                    <strong>Consulte preços</strong>
+                                @endif
                                 {{ $event->location }}
                             </div>
                         </a>
+                       
                     @endforeach
                 @else
                     <h2>Não há ingressos no momento</h2>

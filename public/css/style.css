@@ -8,11 +8,11 @@
 }
 
 header {
-    padding: 20px;
+    padding: 15px 60px;
     background-color: #011F26;
     color: white;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-rows: 100%;
     justify-content: center;
     align-items: center;
@@ -37,7 +37,7 @@ header .menu-icon {
     display: none;
 }
 
-header .box-menu{
+header .box-menu {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -46,17 +46,10 @@ header .box-menu{
 header .ingresso a,
 .pesquisa a,
 .carrinho a,
-.perfil a {
+.header-menu a {
     text-decoration: none;
     color: #ffffff;
     cursor: pointer;
-}
-
-header .perfil {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-right: 30%;
 }
 
 
@@ -196,6 +189,7 @@ header button {
     cursor: pointer;
 }
 
+
 header button p {
     margin-left: 10px;
 }
@@ -307,7 +301,6 @@ header button p {
 }
 
 .topicos-botoes div a {
-    background-color: #d9d9d9;
     width: 150px;
     height: 150px;
     display: flex;
@@ -315,6 +308,44 @@ header button p {
     justify-content: center;
     border-radius: 50%;
     padding: 20px;
+}
+
+.palestra a {
+
+    background: #4ecfcc;
+    background: linear-gradient(90deg, rgba(78, 207, 204, 1) 1%, rgba(57, 196, 161, 1) 50%);
+
+}
+
+.esporte a {
+    background: #b855f2;
+    background: linear-gradient(90deg, rgba(184, 85, 242, 1) 1%, rgba(67, 146, 230, 1) 50%);
+}
+
+.festa a {
+    background: #2A7B9B;
+    background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(186, 237, 83, 1) 100%);
+}
+
+.cultura a {
+    background: #f25591;
+    background: linear-gradient(90deg, rgba(242, 85, 145, 1) 1%, rgba(230, 115, 67, 1) 50%);
+}
+
+.shows a {
+    background: #6173ff;
+    background: linear-gradient(90deg, rgba(97, 115, 255, 1) 0%, rgba(77, 97, 227, 1) 35%, rgba(0, 100, 230, 1) 100%);
+}
+
+.tours a {
+    background: #833AB4;
+    background: linear-gradient(254deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 100%, rgba(253, 47, 38, 1) 46%);
+}
+
+.more a {
+    background: #ad3160;
+    background: linear-gradient(90deg, rgba(173, 49, 96, 1) 1%, rgba(219, 86, 29, 1) 50%);
+
 }
 
 .topicos-botoes a img {
@@ -370,7 +401,7 @@ header button p {
     margin-top: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .card-ingresso:hover {
@@ -551,9 +582,9 @@ footer .redes-footer {
     color: #011F26;
 }
 
-.content {
+/* .content {
     height: 50vh;
-}
+} */
 
 @media (max-width: 1024px) {
     .topicos-botoes {
@@ -615,7 +646,8 @@ footer .redes-footer {
     .ingresso,
     .carrinho,
     .cadastro a,
-    .perfil button {
+    .perfil button,
+    .header-menu a {
         display: none;
     }
 

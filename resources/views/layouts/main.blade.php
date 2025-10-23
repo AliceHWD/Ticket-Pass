@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('titulo')</title>
 
-    <link rel="stylesheet" href="/css/style.css"> <!-- colocar css só pros header e rodaé com esse nome -->
+    <link rel="stylesheet" href="/css/style.css"> 
     <link rel="stylesheet" href="@yield('css')">
 </head>
 
@@ -30,19 +30,19 @@
         <div class="sidebar" id="sidebar">
 
             <div class="logo-menu">
-                <a href="./index.php">
-                    <img src="../imagens/logo.png" alt="">
+                <a href="">
+                    <img src="" alt="">
                     <h3>OpenPass</h3>
                 </a>
             </div>
 
             <ul>
-                <li><a href="./pesquisa.php">Procurar Ingressos</a></li>
+                <li><a href="/search">Procurar Ingressos</a></li>
                 <li><a href="/events/create">Anunciar Ingresso <i class="fa-solid fa-plus"></i></a></li>
                 <li><a href="/my-tickets">Meus Ingressos</a></li>
-                {{-- @auth('seller') --}}
+                @auth
                     <li><a href="/seller/index">Área vendedor</a></li>
-                {{-- @endauth --}}
+                @endauth
                 <li><a href="/register">Cadastrar-se!</a></li>
             </ul>
 
@@ -62,7 +62,16 @@
             </div>
 
         </div>
+
+        {{-- Header --}}
         <div class="box-menu">
+            <div class="header-menu">
+                <a href="/">
+                    <i class="fa-solid fa-house"></i>
+                    Menu
+                </a>
+            </div>
+
             <div class="pesquisa">
                 <a href="/search">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -72,19 +81,18 @@
 
             <div class="ingresso">
                 <a href="/events/create">
-                    Anunciar Ingresso
                     <i class="fa-solid fa-plus"></i>
+                    Anunciar Ingresso
                 </a>
             </div>
 
             <div class="carrinho">
                 <a href="/carrinho">
-                    Carrinho
                     <i class="fa-solid fa-cart-shopping"></i>
+                    Carrinho
                 </a>
             </div>
-        </div>
-
+            
         @guest
             <div class="cadastro">
                 <a href="/register">
@@ -106,7 +114,7 @@
                         <a href="/dashboard">Minha Conta</a>
                         <a href="/my-tickets">Meus Ingressos</a>
                         <li><a href="/seller/index">Área vendedor</a></li>
-                        <a href="./pesquisa.php">Procurar Ingressos</a>
+                        <a href="/search">Procurar Ingressos</a>
                         <a href="#">Ajuda</a>
                         {{-- <a href="/logout" method="post">Sair</a> --}}
                     </div>
@@ -114,6 +122,8 @@
 
             </div>
         @endauth
+        </div>
+
     </header>
 
     <main>
@@ -133,7 +143,7 @@
                 <a href="/search">Encontre Ingressos</a>
                 <a href="#">Cidades</a>
                 <a href="#">Categorias</a>
-                <a href="./areaV.php">Adicione seu ingresso</a>
+                <a href="/events/create">Anuncie seu ingresso</a>
                 <a href="#">Ajuda</a>
             </div>
             <div class="linha"></div>
@@ -158,8 +168,8 @@
     </footer>
 
     <script src="https://kit.fontawesome.com/5553e94d09.js" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
     <script src="@yield('js')"></script>
-
 </body>
 
 </html>

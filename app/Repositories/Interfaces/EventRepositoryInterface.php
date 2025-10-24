@@ -5,7 +5,6 @@ namespace App\Repositories\Interfaces;
 interface EventRepositoryInterface
 {
     public function getTopEvents();
-    public function filterEvents($filters);
     public function searchEvents($search);
     public function findById($id);
     public function create($data);

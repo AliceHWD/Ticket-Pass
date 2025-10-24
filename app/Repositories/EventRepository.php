@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Interfaces\EventRepositoryInterface;
 use App\Models\Event;
+use App\Repositories\Interfaces\EventRepositoryInterface;
 
 class EventRepository implements EventRepositoryInterface
 {
@@ -16,46 +16,11 @@ class EventRepository implements EventRepositoryInterface
 
     public function getTopEvents()
     {
-        return $this->model->select('events.*')
-            ->selectRaw('MIN(tickets.initial_price) as menor_preco')
-            ->leftJoin('tickets', 'events.event_id', '=', 'tickets.event_id')
-            ->where('tickets.status', 'Disponível')
-            ->groupBy('events.event_id')
-            ->orderBy('events.start_event_date')
-            ->limit(20)
+        return Event::withMin('tickets', 'initial_price')
+            ->whereHas('tickets', fn ($q) => $q->where('status', 'Disponível'))
+            ->orderBy('start_event_date', 'asc')
+            ->take(20)
             ->get();
-    }
-
-    public function filterEvents($filters = [])
-    {
-        $query = $this->model->newQuery();
-
-        // Filtro de categorias (checkbox)
-        if (!empty($filters['categories'])) {
-            $query->whereIn('event_type', $filters['categories']);
-        }
-
-        // data
-        if (!empty($filters['date'])) {
-             $query->whereDate('event_date', '=', $filters['date']);
-        }
-
-        // preço mínimo
-        if (!empty($filters['precoMinimo'])) {
-            $query->where('initial_price', '>=', $filters['precoMinimo']);
-        }
-
-        // preço máximo
-        if (!empty($filters['precoMaximo'])) {
-            $query->where('initial_price', '<=', $filters['precoMaximo']);
-        }
-
-        // localização
-        if (!empty($filters['location'])) {
-            $query->where('location', 'like', '%' . $filters['location'] . '%');
-        }
-
-        return $query->get();
     }
 
     public function searchEvents($search)
@@ -63,7 +28,7 @@ class EventRepository implements EventRepositoryInterface
         $query = $this->model->newQuery();
 
         if ($search) {
-            $query->where('title', 'like', '%' . $search . '%');
+            $query->where('title', 'like', '%'.$search.'%');
         }
 
         return $query->with('tickets')->get();
@@ -82,9 +47,9 @@ class EventRepository implements EventRepositoryInterface
     public function getAllForSelect()
     {
         return $this->model->select('event_id', 'title', 'start_event_date')
-                          ->where('start_event_date', '>=', now())
-                          ->orderBy('start_event_date')
-                          ->get();
+            ->where('start_event_date', '>=', now())
+            ->orderBy('start_event_date')
+            ->get();
     }
 
     public function findWithTickets($id)
@@ -94,14 +59,15 @@ class EventRepository implements EventRepositoryInterface
 
     public function getEventsBySeller($sellerId)
     {
-        return $this->model->select('events.*')
-            ->selectRaw('MIN(tickets.initial_price) as menor_preco')
-            ->selectRaw('COUNT(tickets.ticket_id) as total_tickets')
-            ->leftJoin('tickets', 'events.event_id', '=', 'tickets.event_id')
-            ->where('events.seller_id', $sellerId)
-            ->where('tickets.status', 'Disponível')
-            ->groupBy('events.event_id')
-            ->orderBy('events.start_event_date')
+        return Event::withMin('tickets', 'initial_price') // menor_preco
+            ->withCount(['tickets as total_tickets' => function ($query) {
+                $query->where('status', 'Disponível');
+            }])
+            ->where('seller_id', $sellerId)
+            ->whereHas('tickets', function ($query) {
+                $query->where('status', 'Disponível');
+            })
+            ->orderBy('start_event_date')
             ->get();
     }
 
@@ -109,6 +75,7 @@ class EventRepository implements EventRepositoryInterface
     {
         $event = $this->model->findOrFail($id);
         $event->update($data);
+
         return $event;
     }
 
@@ -119,7 +86,7 @@ class EventRepository implements EventRepositoryInterface
 
     public function canDelete($id)
     {
-        return !$this->model->join('tickets', 'events.event_id', '=', 'tickets.event_id')
+        return ! $this->model->join('tickets', 'events.event_id', '=', 'tickets.event_id')
             ->where('events.event_id', $id)
             ->where('tickets.status', 'Vendido')
             ->exists();

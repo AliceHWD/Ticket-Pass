@@ -4,12 +4,13 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [EventController::class, 'index']);
-Route::get('/search', [EventController::class, 'search']);
-Route::get('/filter', [EventController::class, 'filter']);
+Route::get('/search', [SearchController::class, 'index']);
+Route::get('/filter', [SearchController::class, 'filter']);
 
 // Events
 Route::get('/events/create', [EventController::class, 'create'])->name('events.create')->middleware('seller');
@@ -43,12 +44,11 @@ Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.dest
 
 // Checkout
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
-
-
-Route::get('/pagamento', function () {
-    return view('pagamento');
-});
+// Payment
+Route::get('/payment/{orderId}', [\App\Http\Controllers\PaymentController::class, 'show'])->name('payment.show');
+Route::post('/payment/{orderId}/process', [\App\Http\Controllers\PaymentController::class, 'process'])->name('payment.process');
 
 // Jetsream
 Route::middleware([

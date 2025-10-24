@@ -13,7 +13,7 @@ class Buyer extends Model
     protected $primaryKey = 'buyer_id';
 
     protected $fillable = [
-        'buyer_id',
+        'user_id',
     ];
 
     public function user() {

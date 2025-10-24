@@ -8,9 +8,11 @@ use App\Repositories\EventRepository;
 use App\Repositories\Interfaces\SellerRepositoryInterface;
 use App\Repositories\Interfaces\TicketRepositoryInterface;
 use App\Repositories\Interfaces\CartRepositoryInterface;
+use App\Repositories\Interfaces\OrderRepositoryInterface;
 use App\Repositories\SellerRepository;
 use App\Repositories\TicketRepository;
 use App\Repositories\CartRepository;
+use App\Repositories\OrderRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,16 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             CartRepositoryInterface::class,
             CartRepository::class
+        );
+
+        $this->app->bind(
+            OrderRepositoryInterface::class,
+            OrderRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Interfaces\PaymentRepositoryInterface::class,
+            \App\Repositories\PaymentRepository::class
         );
     }
 

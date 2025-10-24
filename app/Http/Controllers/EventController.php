@@ -43,12 +43,9 @@ class EventController extends Controller
             'categories' => 'nullable|array',
         ]);
 
-        $events = $this->eventRepo->filterEvents($filters);
+        
 
-        return view('search', [
-            'events' => $events,
-            'filters' => $filters,
-        ]);
+        return view('search');
     }
 
     public function show($id)

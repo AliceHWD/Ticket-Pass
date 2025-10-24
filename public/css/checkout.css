@@ -1,0 +1,199 @@
+/* Reset e Tipografia Global */
+* {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f8fafc;
+    color: #1a202c;
+    line-height: 1.6;
+}
+
+.page-header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #3b82f6;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    max-width: 650px;
+    margin: 0 auto 10px auto;
+}
+
+/* Container dos Itens */
+.order-item {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px auto;
+    max-width: 650px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #3b82f6;
+    position: relative;
+}
+
+.order-item::before {
+    content: '🎫';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+}
+
+/* Título do Evento */
+.order-item h3 {
+    color: #1e293b;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-right: 40px;
+}
+
+/* Parágrafos com Ícones */
+.order-item p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #64748b;
+    padding: 6px 12px;
+    background: #f8fafc;
+    border-radius: 6px;
+    position: relative;
+    padding-left: 35px;
+}
+
+.order-item p:nth-child(2)::before { content: '📅'; position: absolute; left: 10px; }
+.order-item p:nth-child(3)::before { content: '⏰'; position: absolute; left: 10px; }
+.order-item p:nth-child(4)::before { content: '📍'; position: absolute; left: 10px; }
+.order-item p:nth-child(5)::before { content: '📮'; position: absolute; left: 10px; }
+.order-item p:nth-child(6)::before { content: '🏷️'; position: absolute; left: 10px; }
+.order-item p:nth-child(7)::before { content: '📝'; position: absolute; left: 10px; }
+
+.order-item p strong {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* Informações do Ingresso */
+.order-item p:contains("Código")::before { content: '🎟️'; }
+.order-item p:contains("Detalhes")::before { content: 'ℹ️'; }
+.order-item p:contains("Preço")::before { content: '💰'; }
+
+/* Separador */
+hr {
+    border: none;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 24px auto;
+    max-width: 650px;
+}
+
+/* Resumo de Preços */
+.price-summary {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px auto;
+    max-width: 650px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #10b981;
+    position: relative;
+}
+
+.price-summary::before {
+    content: '💵 Resumo do Pedido';
+    display: block;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.price-summary p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #64748b;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-radius: 6px;
+}
+
+#total {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    background: #10b981;
+    margin-top: 12px;
+}
+
+.price-summary p strong {
+    font-weight: 600;
+}
+
+/* Botão de Ação */
+.price-summary>button {
+    content: 'Prosseguir para Pagamento';
+    display: block;
+    text-align: center;
+    background: #3b82f6;
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    border: none;
+    font-size: 18px;
+}
+
+.price-summary:hover>button {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body::before,
+    .order-item,
+    .price-summary {
+        margin-left: 16px;
+        margin-right: 16px;
+        padding: 20px;
+    }
+    
+    body::before {
+        font-size: 20px;
+    }
+    
+    .order-item h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    body::before,
+    .order-item,
+    .price-summary {
+        margin-left: 12px;
+        margin-right: 12px;
+        padding: 16px;
+    }
+    
+    .order-item p {
+        font-size: 13px;
+        padding-left: 30px;
+    }
+    
+    .price-summary p:last-child {
+        font-size: 16px;
+    }
+}

@@ -75,15 +75,15 @@
     </div>
     <div class="primeiros-ingressos">
 
-        @if (count($ingressos) > 0)
+        @if ($ingressos && count($ingressos) > 0)
             @foreach($ingressos as $ingresso)
                 <a href="/events/{{ $ingresso->event_id}}" class="card-ingresso">
                     <img src="{{ $ingresso->image }}" alt="">
                     <p>{{ \Carbon\Carbon::parse($ingresso->start_event_date)->format('d/m/Y') }}</p>
                     <p class="nome">{{ $ingresso->title }}</p>
                     <div class="lugar">
-                        @if($ingresso->menor_preco)
-                            <strong>A partir de R$ {{ number_format($ingresso->menor_preco, 2, ',', '.') }}</strong>
+                        @if($ingresso->tickets_min_initial_price)
+                            <strong>A partir de R$ {{ number_format($ingresso->tickets_min_initial_price, 2, ',', '.') }}</strong>
                         @else
                             <strong>Consulte preços</strong>
                         @endif
@@ -118,7 +118,7 @@
 
     <div class="primeiros-ingressos">
 
-        @if (count($ingressos) >= 5)
+        {{-- @if (count($ingressos) >= 5)
             @for ($i = 5; $i < count($ingressos); $i++)
                 <a href="/events/{{ $ingressos[$i]['event_id'] }}" class="card-ingresso">
                     <img src="{{ $ingressos[$i]['image'] }}" alt="">
@@ -130,7 +130,7 @@
                     </div>
                 </a>
             @endfor
-        @endif  
+        @endif   --}}
 
         </main>
 

@@ -28,7 +28,7 @@
                                 <i class="fas fa-map-marker-alt"></i> {{ $event->location }}
                             </p>
                             <p class="card-text">
-                                <strong>A partir de R$ {{ number_format($event->menor_preco, 2, ',', '.') }}</strong>
+                                <strong>A partir de R$ {{ number_format($event->tickets_min_initial_price, 2, ',', '.') }}</strong>
                             </p>
                             <p class="card-text">
                                 <small class="text-muted">{{ $event->total_tickets }} ingressos disponíveis</small>

@@ -31,4 +31,14 @@ class PaymentRepository implements PaymentRepositoryInterface
             $item->ticket->update(['status' => 'Vendido']);
         }
     }
+    
+    public function findByExternalId($externalId)
+    {
+        return Payment::where('external_id', $externalId)->first();
+    }
+    
+    public function updatePaymentStatus($paymentId, $status)
+    {
+        return Payment::where('payment_id', $paymentId)->update(['status' => $status]);
+    }
 }

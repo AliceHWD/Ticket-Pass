@@ -76,14 +76,15 @@
     <div class="primeiros-ingressos">
 
         @if ($ingressos && count($ingressos) > 0)
-            @foreach($ingressos as $ingresso)
-                <a href="/events/{{ $ingresso->event_id}}" class="card-ingresso">
+            @foreach ($ingressos as $ingresso)
+                <a href="/events/{{ $ingresso->event_id }}" class="card-ingresso">
                     <img src="{{ $ingresso->image }}" alt="">
-                    <p>{{ \Carbon\Carbon::parse($ingresso->start_event_date)->format('d/m/Y') }}</p>
+                    <p class="data">{{ \Carbon\Carbon::parse($ingresso->start_event_date)->format('d/m/Y') }}</p>
                     <p class="nome">{{ $ingresso->title }}</p>
                     <div class="lugar">
-                        @if($ingresso->tickets_min_initial_price)
-                            <strong>A partir de R$ {{ number_format($ingresso->tickets_min_initial_price, 2, ',', '.') }}</strong>
+                        @if ($ingresso->tickets->count() > 0)
+                            <strong>A partir de R$
+                                {{ number_format($ingresso->tickets->min('initial_price'), 2, ',', '.') }}</strong>
                         @else
                             <strong>Consulte preços</strong>
                         @endif
@@ -92,9 +93,7 @@
                 </a>
             @endforeach
         @else
-            <p>
-                Não há ingressos no momento
-            </p>
+            <h2>Não há ingressos no momento</h2>
         @endif
 
     </div>

@@ -47,6 +47,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Interfaces\PaymentRepositoryInterface::class,
             \App\Repositories\PaymentRepository::class
         );
+
+        $this->app->bind(
+            \App\Repositories\Interfaces\AsaasRepositoryInterface::class,
+            \App\Repositories\AsaasRepository::class
+        );
     }
 
     public function boot()

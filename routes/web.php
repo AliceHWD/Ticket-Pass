@@ -37,6 +37,10 @@ Route::get('/seller/create', [SellerController::class, 'create'])->name('seller.
 Route::post('/seller', [SellerController::class, 'store'])->middleware('auth');
 Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.index')->middleware('auth');
 
+// Seller Asaas Setup
+Route::get('/seller/asaas-setup', [\App\Http\Controllers\SellerAsaasController::class, 'showSubAccountForm'])->name('seller.asaas.setup')->middleware('auth');
+Route::post('/seller/asaas-subconta', [\App\Http\Controllers\SellerAsaasController::class, 'createSubAccount'])->name('seller.asaas.create')->middleware('auth');
+
 // Cart
 Route::get('/carrinho', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
@@ -49,6 +53,10 @@ Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('
 // Payment
 Route::get('/payment/{orderId}', [\App\Http\Controllers\PaymentController::class, 'show'])->name('payment.show');
 Route::post('/payment/{orderId}/process', [\App\Http\Controllers\PaymentController::class, 'process'])->name('payment.process');
+Route::post('/webhook/asaas', [\App\Http\Controllers\PaymentController::class, 'webhook'])->name('webhook.asaas');
+
+// Histórico de Pagamentos
+Route::get('/perfil/historico-pagamento', [\App\Http\Controllers\HistoricoPagamentoController::class, 'index'])->name('historico.pagamento')->middleware('auth');
 
 // Jetsream
 Route::middleware([

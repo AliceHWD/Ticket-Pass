@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Services\Search\SearchFilterAdapter;
 use App\Services\Search\FilterCategoriaDecorator;
@@ -20,6 +21,9 @@ class SearchController extends Controller
         if ($searchTerm) {
             $filter = $this->buildFilterChain($request, $searchTerm);
             $events = $filter->execute($searchTerm);
+        }
+        else {
+            $events = Event::with('tickets')->get();
         }
 
         return view('search', compact('events', 'searchTerm'));

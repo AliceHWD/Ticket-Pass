@@ -1,114 +1,108 @@
-
-.container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
 }
 
-.container section {
-    text-align: center;
-    margin-bottom: 2rem;
+.title {
+  font-size: 28px;
+  color: royalblue;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
 }
 
-.autocomplete-container {
-    position: relative;
-    /* width: 300px; */
+.title::before,.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: royalblue;
 }
 
-.city-suggestions {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #4db6ac;
-    max-height: 200px;
-    overflow-y: auto;
-    width: 100%;
-    z-index: 1000;
-    border-radius: 4px;
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: royalblue;
 }
 
-.city-suggestions div {
-    padding: 8px;
-    cursor: pointer;
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
 }
 
-.city-suggestions div:hover {
-    background-color: #f1f1f1;
+.message {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
 }
 
-
-.container h1 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+.form label {
+  position: relative;
 }
 
-.vendor-name {
-    color: #666;
+.form label .input {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
 }
 
-.container h2 {
-    font-size: 1.25rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
+.form label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
+.form label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
 }
 
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+.form label .input:focus + span,.form label .input:valid + span {
+  top: 30px;
+  font-size: 0.7em;
+  font-weight: 600;
 }
 
-select,
-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 4px;
-    background-color: rgba(96, 125, 139, 0.2);
-    font-size: 1rem;
+.submit {
+  border: none;
+  outline: none;
+  background-color: royalblue;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: .3s ease;
 }
 
-select:focus,
-input:focus {
-    outline: 2px solid #4db6ac;
+.submit:hover {
+  background-color: rgb(56, 90, 194);
 }
 
-.total {
-    text-align: center;
-    margin: 1.5rem 0;
-    font-weight: bold;
-}
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
 
-.button-container {
-    text-align: center;
-}
-
-form button {
-    background-color: #4db6ac;
-    color: white;
-    border: none;
-    padding: 0.75rem 2rem;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-form button:hover {
-    background-color: #3d9d94;
-}
-
-form button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-section {
-    margin-bottom: 2rem;
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('titulo', 'Pagamento')
-@section('css', '/css/payment.css')
+@section('css', '/css/pagamento.css')
 
 @section('conteudo')
 <div class="container">

@@ -6,20 +6,40 @@
 @section('conteudo')
 
     <div class="container">
-        <form id="salesForm" method="POST" action="/seller">
+        <form class="form" method="POST" action="/seller">
             @csrf
 
-            <label for="cep">Digita o CEP aí</label>
-            <input type="text" id="" name="cep" placeholder="Digite o seu cep" required>
-            <label for="numero">Digite o seu número residencial</label>
-            <input type="text" id="" name="house_number" placeholder="Número residencial" required>
+            <p class="title">Vendedor</p>
+            <p class="message">Faça cadastro para ser um vendedor da TicketPass! </p>
+            <label for="cep">
+                <input type="text" class="input" name="cep" required>
+                <span>Digita seu CEP</span>
+            </label>
 
-            <label for="complemento">Digite o complemento se houver</label>
-            <input type="text" id="" name="complement" placeholder="Digite o complemento se houver">
+            <label for="numero">
+                <input type="text" class="input" name="house_number" required>
+                <span>Digita seu número</span>
+            </label>
 
-            <button type="submit" id="announceButton">Anunciar</button>
+            <label for="complemento">
+                <input type="text" class="input" name="complement" >
+                <span>Complemento</span>
+            </label>
+            
+            {{-- <label for="cidade">Cidade:</label>
+            <input type="text" class="input" name="cidade" disabled>
+
+            <label for="bairro">Bairro:</label>
+            <input type="text" class="input" name="bairro" disabled>
+
+            <label for="rua">Rua:</label>
+            <input type="text" class="input" name="complement" disabled> --}}
+
+            <button type="submit" class="submit">Anunciar</button>
 
         </form>
+
+
     </div>
 
 @endsection

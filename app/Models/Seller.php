@@ -19,6 +19,8 @@ class Seller extends Model
         'cep',
         'house_number',
         'complement',
+        'asaas_wallet_id',
+        'asaas_account_id',
     ];
 
     public function user() {

@@ -54,8 +54,9 @@
             @if (!empty($searchTerm))
                 <h2>Resultados de: {{ $searchTerm }}</h2>
             @endif
+
             <div class="events-grid">
-                @if ($events)
+                @if ($events->isNotEmpty())
                     @foreach ($events as $event)
                         <a href="/events/{{ $event->event_id }}" class="card-ingresso">
                             <img src="{{ $event->image }}" alt="">
@@ -73,9 +74,15 @@
                         </a>
                     @endforeach
                 @else
-                    <h2>Não há ingressos no momento</h2>
+                    @if (!empty($searchTerm))
+                        <h2>Nenhum resultado encontrado para "{{ $searchTerm }}"</h2>
+                    @else
+                        <h2>Não há ingressos no momento</h2>
+                    @endif
                 @endif
             </div>
-        </main>
+
+    </div>
+    </main>
     </div>
 @endsection

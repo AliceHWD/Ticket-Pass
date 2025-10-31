@@ -107,4 +107,5 @@ app/
 
 ## Diagrama de Classes
 
-![Captura de tela 2025-08-17 085333](https://via.placeholder.com/800x400?text=Diagrama+de+Classes+do+Projeto)
+<img width="825" height="554" alt="image" src="https://github.com/user-attachments/assets/75ebb7b7-5e82-43ec-a0a8-09258a7ab7f9" />
+

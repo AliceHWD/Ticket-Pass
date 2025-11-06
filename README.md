@@ -24,6 +24,7 @@ O projeto consiste em um sistema de venda e compra de ingressos para eventos div
 ```bash
 npm install
 composer install
+npm run dev
 ```
 
 2. Configure o arquivo `.env` corretamente com as variáveis do banco de dados:

@@ -23,7 +23,10 @@ class SearchController extends Controller
             $events = $filter->execute($searchTerm);
         }
         else {
-            $events = Event::with('tickets')->get();
+            $events = Event::with('tickets')
+                ->whereHas('tickets', fn ($q) => $q->where('status', 'Disponível'))
+                ->where('start_event_date', '>=', now()->toDateString())
+                ->get();
         }
 
         return view('search', compact('events', 'searchTerm'));

@@ -79,6 +79,13 @@
                         <input type="date" name="birth_date" id="birth_date" class="form-control" required>
                     </div>
                 </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="income_value">Renda Mensal (R$)</label>
+                        <input type="number" name="income_value" id="income_value" class="form-control" min="1000" step="0.01" placeholder="5000.00" required>
+                    </div>
+                </div>
             </div>
 
             <h4>Endereço</h4>

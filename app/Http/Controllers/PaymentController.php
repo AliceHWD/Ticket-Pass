@@ -47,7 +47,7 @@ class PaymentController extends Controller
 
         // Marcar ingressos como reservados
         foreach($order->orderItems as $item) {
-            $item->ticket->update(['status' => 'Reservado']);
+            $item->ticket->update(['status' => 'Vendido']);
         }
         
         ReleaseReservedTickets::dispatch($order->order_id)->delay(now()->addMinutes(15));
@@ -127,6 +127,16 @@ class PaymentController extends Controller
                 'status' => $asaasResponse['status']
             ]);
             
+            // Se for PIX, buscar QR Code
+            if ($request->payment_method === 'pix') {
+                try {
+                    $pixData = $this->asaasService->getPixQrCode($asaasResponse['id']);
+                    $asaasResponse = array_merge($asaasResponse, $pixData);
+                } catch (\Exception $e) {
+                    Log::error('Erro ao buscar QR Code PIX', ['error' => $e->getMessage()]);
+                }
+            }
+            
             return view('payment.pending', [
                 'order' => $order,
                 'paymentMethod' => $request->payment_method,
@@ -156,12 +166,28 @@ class PaymentController extends Controller
             }
             
             if (in_array($event, ['PAYMENT_CONFIRMED', 'PAYMENT_RECEIVED'])) {
+                Log::info('=== PROCESSANDO CONFIRMAÇÃO DE PAGAMENTO ===', [
+                    'event' => $event,
+                    'payment_id' => $paymentId
+                ]);
+                
                 $payment = $this->paymentRepo->findByExternalId($paymentId);
                 
                 if ($payment) {
+                    Log::info('=== PAGAMENTO ENCONTRADO ===', [
+                        'payment_id' => $payment->payment_id,
+                        'order_id' => $payment->order_id,
+                        'current_status' => $payment->status
+                    ]);
+                    
                     // Atualizar status do pagamento
                     $this->paymentRepo->updatePaymentStatus($payment->payment_id, 'completed');
-                    $this->paymentRepo->updateOrderStatus($payment->order_id, ['status' => 'concluído']);
+                    
+                    // Atualizar status do pedido
+                    $this->paymentRepo->updateOrderStatus($payment->order_id, [
+                        'status' => 'concluído',
+                        'payment' => $payment->payment_method
+                    ]);
                     
                     // Marcar ingressos como vendidos
                     $order = $this->paymentRepo->findOrderById($payment->order_id);
@@ -171,11 +197,20 @@ class PaymentController extends Controller
                     
                     Log::info('=== PAGAMENTO CONFIRMADO VIA WEBHOOK ===', [
                         'payment_id' => $paymentId,
-                        'order_id' => $payment->order_id
+                        'order_id' => $payment->order_id,
+                        'new_order_status' => 'concluído'
                     ]);
                 } else {
-                    Log::warning('Pagamento não encontrado no banco', ['payment_id' => $paymentId]);
+                    Log::warning('Pagamento não encontrado no banco', [
+                        'payment_id' => $paymentId,
+                        'searched_external_id' => $paymentId
+                    ]);
                 }
+            } else {
+                Log::info('=== EVENTO IGNORADO ===', [
+                    'event' => $event,
+                    'payment_id' => $paymentId
+                ]);
             }
             
             return response()->json(['status' => 'ok']);

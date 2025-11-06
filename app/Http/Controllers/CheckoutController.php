@@ -25,6 +25,7 @@ class CheckoutController extends Controller
             return redirect()->route('login')->with('message', 'Faça login para finalizar a compra.');
         }
 
+        // Pega os ítens do carrinho
         $cartItems = $this->cartRepo->getCartItems(Auth::id(), null);
         
         if ($cartItems->isEmpty()) {
@@ -47,7 +48,7 @@ class CheckoutController extends Controller
         return view('checkout', compact('cartItems', 'subtotal', 'taxa', 'total'));
     }
 
-    public function process()
+    public function process(Request $request)
     {
         if (!Auth::check()) {
             return redirect()->route('login');
@@ -58,6 +59,20 @@ class CheckoutController extends Controller
         if ($cartItems->isEmpty()) {
             return redirect()->route('cart.index')->with('error', 'Carrinho vazio.');
         }
+
+        // Validar método de pagamento
+        $validationRules = ['payment_method' => 'required|in:credit_card,pix,boleto'];
+        
+        if ($request->payment_method === 'credit_card') {
+            $validationRules = array_merge($validationRules, [
+                'card_number' => 'required|string',
+                'card_name' => 'required|string',
+                'card_expiry' => 'required|string',
+                'card_cvv' => 'required|string|size:3'
+            ]);
+        }
+        
+        $request->validate($validationRules);
 
         // Calcular total
         $subtotal = $cartItems->sum(function($item) { return $item->ticket->initial_price; });
@@ -88,6 +103,7 @@ class CheckoutController extends Controller
             $this->cartRepo->removeFromCart($item->id, Auth::id(), null);
         }
 
-        return redirect()->route('payment.show', $order->order_id)->with('success', 'Pedido criado com sucesso! Número: ' . $orderNumber);
+        // Redirecionar para PaymentController para processar pagamento
+        return app(\App\Http\Controllers\PaymentController::class)->process($order->order_id, $request);
     }
 }

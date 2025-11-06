@@ -13,7 +13,9 @@ Route::get('/search', [SearchController::class, 'index']);
 Route::get('/filter', [SearchController::class, 'filter']);
 
 // Events
+Route::get('/events', [SearchController::class, 'index'])->name('events.index');
 Route::get('/events/create', [EventController::class, 'create'])->name('events.create')->middleware('seller');
+Route::get('/events/category/{category}', [EventController::class, 'category'])->name('events.category');
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
 Route::get('/events/{id}/edit', [EventController::class, 'edit'])->name('events.edit')->middleware('seller');
 Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update')->middleware('seller');
@@ -27,9 +29,7 @@ Route::put('/tickets/{id}', [TicketController::class, 'update'])->name('tickets.
 Route::delete('/tickets/{id}', [TicketController::class, 'destroy'])->name('tickets.destroy')->middleware('seller');
 Route::post('/tickets', [TicketController::class, 'store']);
 
-Route::get('/my-tickets', function () {
-    return view('my-tickets');
-});
+Route::get('/my-tickets', [\App\Http\Controllers\MyTicketsController::class, 'index'])->name('my-tickets')->middleware('auth');
 
 
 // Seller
@@ -54,6 +54,13 @@ Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('
 Route::get('/payment/{orderId}', [\App\Http\Controllers\PaymentController::class, 'show'])->name('payment.show');
 Route::post('/payment/{orderId}/process', [\App\Http\Controllers\PaymentController::class, 'process'])->name('payment.process');
 Route::post('/webhook/asaas', [\App\Http\Controllers\PaymentController::class, 'webhook'])->name('webhook.asaas');
+Route::get('/webhook/test/{paymentId}', function($paymentId) {
+    $payload = [
+        'event' => 'PAYMENT_CONFIRMED',
+        'payment' => $paymentId
+    ];
+    return app(\App\Http\Controllers\PaymentController::class)->webhook(new \Illuminate\Http\Request($payload));
+})->name('webhook.test');
 
 // Histórico de Pagamentos
 Route::get('/perfil/historico-pagamento', [\App\Http\Controllers\HistoricoPagamentoController::class, 'index'])->name('historico.pagamento')->middleware('auth');

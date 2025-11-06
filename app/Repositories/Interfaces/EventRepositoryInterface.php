@@ -11,6 +11,7 @@ interface EventRepositoryInterface
     public function getAllForSelect();
     public function findWithTickets($id);
     public function getEventsBySeller($sellerId);
+    public function getEventsByCategory($category);
     public function update($id, $data);
     public function delete($id);
     public function canDelete($id);

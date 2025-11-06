@@ -33,6 +33,20 @@ class EventController extends Controller
         ]);
     }
 
+    public function category($category)
+    {
+        $events = $this->eventRepo->getEventsByCategory($category);
+        
+        // Debug: Buscar todas as categorias disponíveis
+        $allCategories = \App\Models\Event::distinct()->pluck('category')->toArray();
+        
+        return view('events.category', [
+            'events' => $events,
+            'category' => $category,
+            'allCategories' => $allCategories,
+        ]);
+    }
+
     public function filter(Request $request)
     {
         $filters = $request->validate([
@@ -95,28 +109,32 @@ class EventController extends Controller
 
     public function update(Request $request, $id)
     {
-        $event = $this->eventRepo->findById($id);
-        
-        if ($event->seller_id != Auth::id()) {
-            abort(403, 'Você não tem permissão para editar este evento.');
+        try {
+            $event = $this->eventRepo->findById($id);
+            
+            if ($event->seller_id != Auth::id()) {
+                abort(403, 'Você não tem permissão para editar este evento.');
+            }
+            
+            $data = $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'start_event_date' => 'required|date',
+                'start_event_time' => 'required',
+                'end_event_date' => 'required|date',
+                'end_event_time' => 'required',
+                'category' => 'required|string',
+                'location' => 'required|string|max:255',
+                'cep' => 'required|string|max:255',
+                'location_number' => 'required|integer',
+            ]);
+            
+            $this->eventRepo->update($id, $data);
+            
+            return redirect()->route('events.show', $id)->with('success', 'Evento atualizado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->with('error', 'Erro ao atualizar evento: ' . $e->getMessage());
         }
-        
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'start_event_date' => 'required|date',
-            'start_event_time' => 'required|date_format:H:i',
-            'end_event_date' => 'required|date',
-            'end_event_time' => 'required|date_format:H:i',
-            'category' => 'required|string',
-            'location' => 'required|string|max:255',
-            'cep' => 'required|string|max:255',
-            'location_number' => 'required|integer',
-        ]);
-        
-        $this->eventRepo->update($id, $data);
-        
-        return redirect()->route('events.show', $id)->with('success', 'Evento atualizado com sucesso!');
     }
 
     public function destroy($id)

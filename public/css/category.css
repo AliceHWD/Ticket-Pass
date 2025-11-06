@@ -1,0 +1,392 @@
+/* Reset e Tipografia Global */
+* {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fafbfc;
+    color: #1a202c;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Variáveis CSS */
+:root {
+    --primary-blue: #4299e1;
+    --secondary-blue: #3182ce;
+    --dark-blue: #2c5282;
+    --green-price: #38a169;
+    --white: #ffffff;
+    --light-gray: #fafbfc;
+    --border-color: #e2e8f0;
+    --text-gray: #718096;
+    --text-muted: #a0aec0;
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --gradient-primary: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+}
+
+/* Header da Categoria */
+.category-header {
+    padding: 4rem 1rem 2rem;
+    text-align: center;
+    color: #1a202c;
+    margin-bottom: 3rem;
+}
+
+.category-icon {
+    margin-bottom: 1.5rem;
+}
+
+.category-icon > div {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.category-icon img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+/* Cores específicas para cada categoria - igual ao index */
+.category-icon .categoria-shows {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.category-icon .categoria-esporte {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+}
+
+.category-icon .categoria-festa {
+    background: linear-gradient(135deg, #ed64a6 0%, #d53f8c 100%);
+}
+
+.category-icon .categoria-palestra {
+    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+}
+
+.category-icon .categoria-tours {
+    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+}
+
+.category-icon .categoria-cultura {
+    background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
+}
+
+.category-icon .categoria-more {
+    background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+}
+
+.category-title p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    margin-top: 0.5rem;
+}
+
+/* Eventos da Categoria */
+.category-events {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Cards - Igual ao index */
+.tickets-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: flex-start;
+}
+
+.card {
+    --card-bg: #ffffff;
+    --card-accent: #4299e1;
+    --card-text: #1e293b;
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+
+    width: 190px;
+    height: 254px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    cursor: pointer;
+}
+
+.card__shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card__glow {
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(
+        circle at 50% 0%,
+        rgba(66, 153, 225, 0.3) 0%,
+        rgba(66, 153, 225, 0) 70%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.card__content {
+    padding: 1.25em;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+    position: relative;
+    z-index: 2;
+}
+
+.card__image {
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(45deg, #63b3ed, #4299e1);
+    border-radius: 12px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+            circle at 30% 30%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 30%
+        ),
+        repeating-linear-gradient(
+            45deg,
+            rgba(66, 153, 225, 0.1) 0px,
+            rgba(66, 153, 225, 0.1) 2px,
+            transparent 2px,
+            transparent 4px
+        );
+    opacity: 0.5;
+}
+
+.card__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+
+.card__title {
+    color: var(--card-text);
+    font-size: 1.1em;
+    margin: 0;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.card__description {
+    color: var(--card-text);
+    font-size: 0.75em;
+    margin: 0;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.card__price {
+    color: var(--card-text);
+    font-weight: 700;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.card__button {
+    width: 28px;
+    height: 28px;
+    background: var(--card-accent);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(0.9);
+}
+
+/* Efeitos Hover dos Cards */
+.card:hover {
+    transform: scale(1.02);
+    box-shadow:
+        0 25px 35px -5px rgba(0, 0, 0, 0.15),
+        0 15px 15px -5px rgba(0, 0, 0, 0.08);
+    border-color: rgba(66, 153, 225, 0.3);
+}
+
+.card:hover .card__shine {
+    opacity: 1;
+    animation: shine 3s infinite;
+}
+
+.card:hover .card__glow {
+    opacity: 1;
+}
+
+.card:hover .card__image {
+    transform: scale(1.03);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover .card__title {
+    color: var(--card-accent);
+}
+
+.card:hover .card__description {
+    opacity: 1;
+}
+
+.card:hover .card__price {
+    color: var(--card-accent);
+}
+
+.card:hover .card__button {
+    transform: scale(1);
+    box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.2);
+}
+
+.card:hover .card__button i {
+    animation: pulse 1.5s infinite;
+}
+
+.card:active {
+    transform: scale(0.98);
+}
+
+/* Animações */
+@keyframes shine {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Sem eventos */
+.no-events {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+.no-events h2 {
+    color: #1a202c;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.no-events p {
+    color: #718096;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #4299e1, #3182ce);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(66, 153, 225, 0.3);
+    text-decoration: none;
+    color: white;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .category-header {
+        padding: 2rem 1rem 1rem;
+    }
+    
+    .category-title h1 {
+        font-size: 2rem;
+    }
+    
+    .category-title p {
+        font-size: 1rem;
+    }
+    
+    .tickets-list {
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .no-events {
+        padding: 2rem 1rem;
+        margin: 1rem;
+    }
+    
+    .no-events h2 {
+        font-size: 1.5rem;
+    }
+}

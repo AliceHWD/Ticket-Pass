@@ -21,7 +21,13 @@ class FilterPrecoDecorator extends FilterDecorator
         $results = $this->inner->execute($query);
         
         return $results->filter(function ($event) {
-            $minTicketPrice = $event->tickets->min('initial_price');
+            $availableTickets = $event->tickets->where('status', 'Disponível');
+            
+            if ($availableTickets->isEmpty()) {
+                return false;
+            }
+            
+            $minTicketPrice = $availableTickets->min('initial_price');
             
             $matchesMin = $this->minPrice === null || $minTicketPrice >= $this->minPrice;
             $matchesMax = $this->maxPrice === null || $minTicketPrice <= $this->maxPrice;

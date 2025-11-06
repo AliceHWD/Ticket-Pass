@@ -19,18 +19,24 @@
                     <h3>Pagamento via PIX</h3>
                     <p>Use o código PIX abaixo para realizar o pagamento:</p>
                     
-                    @if(isset($paymentData['qrCode']))
+
+                    
+                    @if(isset($paymentData['encodedImage']))
                         <div class="qr-code">
-                            <img src="data:image/png;base64,{{ $paymentData['qrCode']['encodedImage'] }}" alt="QR Code PIX">
+                            <img src="data:image/png;base64,{{ $paymentData['encodedImage'] }}" alt="QR Code PIX" style="max-width: 300px;">
                         </div>
+                    @else
+                        <p style="color: red;">QR Code não encontrado nos dados</p>
                     @endif
                     
-                    @if(isset($paymentData['pixCopyAndPaste']))
+                    @if(isset($paymentData['payload']))
                         <div class="pix-code">
                             <label>Código PIX:</label>
-                            <textarea readonly onclick="this.select()">{{ $paymentData['pixCopyAndPaste'] }}</textarea>
-                            <button onclick="copyToClipboard('{{ $paymentData['pixCopyAndPaste'] }}')">Copiar Código</button>
+                            <textarea readonly onclick="this.select()" style="width: 100%; height: 80px;">{{ $paymentData['payload'] }}</textarea>
+                            <button onclick="copyToClipboard('{{ $paymentData['payload'] }}')">Copiar Código</button>
                         </div>
+                    @else
+                        <p style="color: red;">Código PIX não encontrado nos dados</p>
                     @endif
                 </div>
             @endif

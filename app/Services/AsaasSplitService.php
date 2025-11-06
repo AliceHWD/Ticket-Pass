@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Repositories\Interfaces\AsaasRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+
 
 class AsaasSplitService
 {
@@ -185,7 +187,8 @@ class AsaasSplitService
             'addressNumber' => $sellerData['address_number'] ?? '123',
             'complement' => $sellerData['complement'] ?? '',
             'province' => $sellerData['neighborhood'] ?? 'Centro',
-            'postalCode' => $sellerData['postal_code'] ?? '01310-100'
+            'postalCode' => $sellerData['postal_code'] ?? '01310-100',
+            'incomeValue' => (float) $sellerData['income_value']
         ];
         
         return $this->asaasRepo->createSubAccount($subAccountData);

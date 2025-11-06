@@ -18,6 +18,7 @@ class EventRepository implements EventRepositoryInterface
     {
         return Event::withMin('tickets', 'initial_price')
             ->whereHas('tickets', fn ($q) => $q->where('status', 'Disponível'))
+            ->where('start_event_date', '>=', now()->toDateString())
             ->orderBy('start_event_date', 'asc')
             ->take(20)
             ->get();
@@ -31,7 +32,7 @@ class EventRepository implements EventRepositoryInterface
             $query->where('title', 'like', '%'.$search.'%');
         }
 
-        return $query->with('tickets')->get();
+        return $query->getTopEvents();
     }
 
     public function findById($id)
@@ -64,10 +65,18 @@ class EventRepository implements EventRepositoryInterface
                 $query->where('status', 'Disponível');
             }])
             ->where('seller_id', $sellerId)
-            ->whereHas('tickets', function ($query) {
-                $query->where('status', 'Disponível');
-            })
             ->orderBy('start_event_date')
+            ->get();
+    }
+
+    public function getEventsByCategory($category)
+    {
+        return Event::with('tickets')
+            ->withMin('tickets', 'initial_price')
+            ->whereHas('tickets', fn ($q) => $q->where('status', 'Disponível'))
+            ->where('category', $category)
+            ->where('start_event_date', '>=', now()->toDateString())
+            ->orderBy('start_event_date', 'asc')
             ->get();
     }
 

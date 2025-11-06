@@ -28,7 +28,8 @@ class SellerAsaasController extends Controller
             'address' => 'required|string',
             'address_number' => 'required|string',
             'neighborhood' => 'required|string',
-            'postal_code' => 'required|string|size:8'
+            'postal_code' => 'required|string|size:8',
+            'income_value' => 'required|numeric|min:1000'
         ]);
 
         try {
@@ -52,7 +53,8 @@ class SellerAsaasController extends Controller
                 'address_number' => $request->address_number,
                 'complement' => $request->complement,
                 'neighborhood' => $request->neighborhood,
-                'postal_code' => $request->postal_code
+                'postal_code' => $request->postal_code,
+                'income_value' => $request->income_value
             ];
 
             $response = $this->splitService->createSellerSubAccount($subAccountData);

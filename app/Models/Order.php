@@ -21,7 +21,7 @@ class Order extends Model
     ];
 
     public function buyer() {
-        return $this->belongsTo('App\Models\Buyer');
+        return $this->belongsTo('App\Models\Buyer', 'buyer_id', 'buyer_id');
     }
 
     public function tickets() {

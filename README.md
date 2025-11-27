@@ -58,6 +58,7 @@ php artisan migrate
 - Cadastro de evento
 - Cadastro de ingressos
 - Cadastro de vendedor
+- Separação de categorias página inicial
 - Página do vendedor com seus eventos
 - Página com os ingressos adquiridos
 - Adicionar ítens ao carrinho

@@ -24,6 +24,7 @@ O projeto consiste em um sistema de venda e compra de ingressos para eventos div
 ```bash
 npm install
 composer install
+npm run dev
 ```
 
 2. Configure o arquivo `.env` corretamente com as variáveis do banco de dados:
@@ -41,28 +42,30 @@ DB_PASSWORD=
 php artisan migrate
 ```
 
-## Soluções desenvolvidas - 01/09
+## Soluções desenvolvidas
 
 - Login
 - Cadastro
 - Autenticação
-- Página do usuário puxando seus dados
+- Página do usuário com seus dados
 - Update dos dados do usuário
 - Deletar dados do usuário
 - Listagem dos ingressos na página inicial
-- Visualização dos dados do ingresso selecionado
+- Visualização dos dados do evento selecionado
 - Sistema de busca por ingressos
 - Filtros de ingressos
 - Encerrar sessão
-- Verificação do tipo de usuário anunciar ingressos
+- Cadastro de evento
 - Cadastro de ingressos
 - Cadastro de vendedor
-- Mostrar os ingressos disponíveis para determinado evento
-- Página do vendedor com seus ingressos
-- Adicionar ítens no carrinho
-- Finalização de compra
-- Fazer cálculos de taxa
-- Finalizar pedido
+- Separação de categorias página inicial
+- Página do vendedor com seus eventos
+- Página com os ingressos adquiridos
+- Adicionar ítens ao carrinho
+- Retornar dados do pedido
+- Pagamento que pode ser em pix ou boleto
+- Retorno do QR code/boleto
+- Atualização do status de pagamento
 
 ## Organização do projeto
 

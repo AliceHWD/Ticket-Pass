@@ -78,8 +78,8 @@
                         <div class="card__content">
                             <div class="card__image"></div>
                             <div class="card__text">
-                                <h4 class="card__title">Ingresso {{ $ticket->code }}</h4>
-                                <p class="card__description">{{ $ticket->descricao }}</p>
+                                <p class="card__description">{{ $ticket->descricao }} </p>
+                                <p class="card__price">R$ {{ number_format($ticket->initial_price, 2, ',', '.') }}</p>
                                 @auth
                                     @if ($event->seller && $event->seller->user_id == Auth::id() && $ticket->status == 'Disponível')
                                         <div class="ticket-actions mt-2">
@@ -106,14 +106,14 @@
                                                 @csrf
                                                 <input type="hidden" name="ticket_id" value="{{ $ticket->ticket_id }}">
                                                 <button type="submit" class="btn btn-sm btn-success">
-                                                    <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                                                    <i class="fas fa-cart-plus"></i> Adicionar
                                                 </button>
                                             </form>
                                         </div>
                                     @endif
                                 @else
                                     <div class="card__footer">
-                                        <p class="card__price">R$ {{ number_format($ticket->initial_price, 2, ',', '.') }}</p>
+                                        {{-- <p class="card__price">R$ {{ number_format($ticket->initial_price, 2, ',', '.') }}</p> --}}
                                         <form method="POST" action="{{ route('cart.add') }}">
                                             @csrf
                                             <input type="hidden" name="ticket_id" value="{{ $ticket->ticket_id }}">

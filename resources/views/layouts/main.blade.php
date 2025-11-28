@@ -37,11 +37,24 @@
                             </button>
                             <div id="dropdown-menu" class="dropdown-menu">
 
-                                <a href="/dashboard">Minha Conta</a>
+                                <a href="/user/profile">Minha Conta</a>
                                 <a href="/my-tickets">Meus Ingressos</a>
-                                <li><a href="/seller/index">Área vendedor</a></li>
-                                <a href="/search">Procurar Ingressos</a>
-                                <a href="#">Ajuda</a>
+                                @auth
+                                    @if (Auth::user()->seller)
+                                        <a href="/seller/index">Área vendedor</a>
+                                    @endif
+                                @endauth
+
+
+
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Sair
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
 
                             </div>
                         </div>

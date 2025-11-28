@@ -45,14 +45,16 @@
             </div>
 
             <div class="esporte categoria-item">
-                <a href="{{ route('events.category', 'esportes') }}" aria-label="Ver eventos esportivos" class="categoria-esporte">
+                <a href="{{ route('events.category', 'esportes') }}" aria-label="Ver eventos esportivos"
+                    class="categoria-esporte">
                     <img src="{{ asset('img/esporte-icon.png') }}" alt="Esportes">
                 </a>
                 <p>Esportes</p>
             </div>
 
             <div class="festa categoria-item">
-                <a href="{{ route('events.category', 'festa') }}" aria-label="Ver festas e festivais" class="categoria-festa">
+                <a href="{{ route('events.category', 'festa') }}" aria-label="Ver festas e festivais"
+                    class="categoria-festa">
                     <img src="{{ asset('img/festa.png') }}" alt="Festa e festivais">
                 </a>
                 <p>Festa e festivais</p>
@@ -73,7 +75,8 @@
             </div>
 
             <div class="cultura categoria-item">
-                <a href="{{ route('events.category', 'cultura') }}" aria-label="Ver eventos culturais" class="categoria-cultura">
+                <a href="{{ route('events.category', 'cultura') }}" aria-label="Ver eventos culturais"
+                    class="categoria-cultura">
                     <img src="{{ asset('img/culture.png') }}" alt="Cultura">
                 </a>
                 <p>Cultura</p>
@@ -88,7 +91,7 @@
 
         </div>
     </div>
-    
+
     <div class="primeiros-ingressos">
         @if ($ingressos && count($ingressos) > 0)
             <div class="tickets-list">
@@ -100,17 +103,20 @@
                             <div class="card__image"></div>
                             <div class="card__text">
                                 <h4 class="card__title">{{ $ingresso->title }}</h4>
-                                <p class="card__description">{{ $ingresso->location }} - {{ \Carbon\Carbon::parse($ingresso->start_event_date)->format('d/m/Y') }}</p>
+                                <p class="card__description">{{ $ingresso->location }} -
+                                    {{ \Carbon\Carbon::parse($ingresso->start_event_date)->format('d/m/Y') }}</p>
                             </div>
                             <div class="card__footer">
-                                @if ($ingresso->tickets->count() > 0)
-                                    <p class="card__price">R$ {{ number_format($ingresso->tickets->min('initial_price'), 2, ',', '.') }}</p>
+                                @if ($ingresso->tickets->count() < 0)
+                                    <p>Consulte preços</p>
+                                @elseif ($ingresso->tickets->count() == 1)
+                                    <p class="card__price">R$
+                                        {{ number_format($ingresso->tickets->min('initial_price'), 2, ',', '.') }}</p>
                                 @else
-                                    <p class="card__price">Consulte preços</p>
+                                    <p class="card__price">A partir de: <br> R$
+                                        {{ number_format($ingresso->tickets->min('initial_price'), 2, ',', '.') }}</p>
                                 @endif
-                                <form method="GET" action="/events/{{ $ingresso->event_id }}" onclick="event.stopPropagation()">
-                                    <button type="submit" class="card__button"><i class="fas fa-eye"></i></button>
-                                </form>
+
                             </div>
                         </div>
                     </div>

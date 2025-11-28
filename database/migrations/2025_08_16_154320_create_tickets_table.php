@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id('ticket_id');
-            $table->string('code')->unique();
+            $table->string('code')->nullable();
             $table->enum('status', ['Vendido', 'Disponível']);
             $table->string('descricao')->nullable();
             $table->decimal('initial_price', 10, 2);

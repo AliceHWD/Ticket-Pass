@@ -1,87 +1,96 @@
 @extends('layouts.main')
 
-@section('titulo', 'Área de Vendas')
+@section('titulo', 'Criar Evento')
 @section('css', '/css/vendas.css')
 
 @section('conteudo')
-    <div class="container">
-        <section>
-            <h1>Bem-vindo à área de vendas</h1>
-            <p class="vendor-name">{{ Auth::user()->name }}</p>
-        </section>
-
-        <form id="salesForm" method="POST" action="/events">
-            @csrf
-            <section class="event-data">
-                <h2>Dados do evento</h2>
-
-                <div class="autocomplete-container form-group">
-                    <label for="title">Qual o título do evento?</label>
-                    <input type="text" id="title" name="title" placeholder="Digite o título..." autocomplete="off"
-                        required>
-                </div>
-
-                <div class="autocomplete-container form-group">
-                    <label for="location">Qual instituição será o evento?</label>
-                    <input type="text" id="location" name="location" placeholder="BH Hall, Arena MRV..." required>
-                </div>
-
-                <div class="autocomplete-container form-group">
-                    <label for="cep">Qual o cep do evento?</label>
-                    <input type="text" id="cep" name="cep" placeholder="Digite o cep..." required>
-                </div>
-
-                <div class="autocomplete-container form-group">
-                    <label for="location_number">Qual o número do local do evento?</label>
-                    <input type="number" id="location_number" name="location_number" placeholder="Digite o número..."
-                        required>
-                </div>
-
-                <div class="form-group">
-                    <label for="event_date">Selecione a data de início do evento</label>
-                    <input type="date" id="event_date" name="start_event_date" required>
-                    <input type="time" id="event_date" name="start_event_time" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="event_date">Selecione a data de fim do evento</label>
-                    <input type="date" id="event_date" name="end_event_date" required>
-                    <input type="time" id="event_date" name="end_event_time" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="description">Coloque uma descrição para o evento</label>
-                    <input type="text" id="description" name="description" placeholder="Digite a descrição..." required>
-                </div>
-
-                {{-- <div class="form-group">
-                    <label for="event_type">Tipo do evento</label>
-                    <select id="event_type" name="event_type" required>
-                        <option value="">Selecione o tipo</option>
-                        <option value="inteira">Inteira</option>
-                        <option value="meia">Meia</option>
-                    </select>
-                </div> --}}
-
-                <div class="form-group">
-                    <label for="ticketCategory">Categoria do evento</label>
-                    <select id="ticketCategory" name="category" required>
-                        <option value="">Selecione a categoria</option>
-                        <option value="Festa">Festa</option>
-                        <option value="Show">Show</option>
-                        <option value="Esportes">Esportes</option>
-                        <option value="Palestra">Palestra</option>
-                        <option value="Lazer">Lazer</option>
-                        <option value="Cultura">Cultura</option>
-                        <option value="Outro">Outro</option>
-                    </select>
-                </div>
-            </section>
-
-
-            <div class="button-container">
-                <button type="submit" id="announceButton">Confirmar</button>
+<div class="form-wrapper">
+<div class="container">
+    <div class="heading">Criar Evento</div>
+    <form action="/events" method="POST" class="form">
+        @csrf
+        
+        <!-- Informações Básicas -->
+        <div class="section-title">Informações do Evento</div>
+        
+        <input required class="input" type="text" name="title" id="title" placeholder="Título do evento" value="{{ old('title') }}">
+        @error('title')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <textarea required class="input" name="description" id="description" placeholder="Descrição do evento">{{ old('description') }}</textarea>
+        @error('description')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <select required class="input" name="category" id="category">
+            <option value="">Selecione a categoria</option>
+            <option value="Festa" {{ old('category') == 'Festa' ? 'selected' : '' }}>Festa</option>
+            <option value="Show" {{ old('category') == 'Show' ? 'selected' : '' }}>Show</option>
+            <option value="Esportes" {{ old('category') == 'Esportes' ? 'selected' : '' }}>Esportes</option>
+            <option value="Palestra" {{ old('category') == 'Palestra' ? 'selected' : '' }}>Palestra</option>
+            <option value="Lazer" {{ old('category') == 'Lazer' ? 'selected' : '' }}>Lazer</option>
+            <option value="Cultura" {{ old('category') == 'Cultura' ? 'selected' : '' }}>Cultura</option>
+            <option value="Outro" {{ old('category') == 'Outro' ? 'selected' : '' }}>Outro</option>
+        </select>
+        @error('category')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <!-- Local do Evento -->
+        <div class="section-title">Local do Evento</div>
+        
+        <input required class="input" type="text" name="location" id="location" placeholder="Local (BH Hall, Arena MRV...)" value="{{ old('location') }}">
+        @error('location')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <input required class="input" type="text" name="cep" id="cep" placeholder="CEP do evento" value="{{ old('cep') }}">
+        @error('cep')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <input required class="input" type="number" name="location_number" id="location_number" placeholder="Número do local" value="{{ old('location_number') }}">
+        @error('location_number')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <!-- Data e Horário -->
+        <div class="section-title">Data e Horário</div>
+        
+        <div class="datetime-row">
+            <div class="datetime-group">
+                <input required class="input datetime-input" type="date" name="start_event_date" id="start_event_date" value="{{ old('start_event_date') }}">
+                <input required class="input datetime-input" type="time" name="start_event_time" id="start_event_time" value="{{ old('start_event_time') }}">
             </div>
-        </form>
+        </div>
+        @error('start_event_date')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        @error('start_event_time')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <div class="datetime-row">
+            <div class="datetime-group">
+                <input required class="input datetime-input" type="date" name="end_event_date" id="end_event_date" value="{{ old('end_event_date') }}">
+                <input required class="input datetime-input" type="time" name="end_event_time" id="end_event_time" value="{{ old('end_event_time') }}">
+            </div>
+        </div>
+        @error('end_event_date')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        @error('end_event_time')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <input class="login-button" type="submit" value="Criar Evento">
+    </form>
+    
+    <div class="social-account-container">
+        <span class="title">Área de Vendas</span>
     </div>
+    <span class="agreement"><a href="#">Vendedor: {{ Auth::user()->name }}</a></span>
+</div>
+</div>
 @endsection

@@ -18,14 +18,6 @@ class TicketController extends Controller
         $this->eventRepo = $eventRepo;
     }
 
-    public function index() {}
-
-    public function search() {}
-
-    public function filter(Request $request) {}
-
-    public function show($id) {}
-
     public function create(Request $request)
     {
         $eventId = $request->get('event_id');
@@ -40,11 +32,12 @@ class TicketController extends Controller
             'descricao' => 'nullable|string',
             'initial_price' => 'required|numeric|min:0',
             'event_id' => 'required|exists:events,event_id',
-            'codes' => 'required|array|min:1',
-            'codes.*' => 'required|string|max:255|distinct',
+            'ticketQuantity' => 'required|integer|min:1|max:100',
         ]);
 
-        foreach ($data['codes'] as $code) {
+        for ($i = 1; $i <= $data['ticketQuantity']; $i++) {
+            $code = 'TICKET-' . strtoupper(uniqid());
+            
             $this->ticketRepo->create([
                 'code' => $code,
                 'status' => 'Disponível',

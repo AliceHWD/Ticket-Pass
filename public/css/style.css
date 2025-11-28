@@ -434,7 +434,7 @@ body {
     --card-text: #1e293b;
     --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
 
-    width: 190px;
+    width: 210px;
     height: 254px;
     background: var(--card-bg);
     border-radius: 20px;
@@ -495,6 +495,8 @@ body {
 .card__image::after {
     content: "";
     position: absolute;
+    height: 200px;
+
     inset: 0;
     background: radial-gradient(
             circle at 30% 30%,

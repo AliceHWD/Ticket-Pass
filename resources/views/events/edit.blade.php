@@ -1,77 +1,100 @@
 @extends('layouts.main')
 
 @section('titulo', 'Editar Evento')
-@section('css', '/css/vendas.css')
+@section('css', '/css/alterar-evento.css')
 
 @section('conteudo')
-    <div class="container">
-        <section>
-            <h1>Editar Evento</h1>
-            <p class="vendor-name">{{ Auth::user()->name }}</p>
-        </section>
-
-        <form method="POST" action="{{ route('events.update', $event->event_id) }}">
-            @csrf
-            @method('PUT')
-            <section class="event-data">
-                <h2>Dados do evento</h2>
-
-                <div class="form-group">
-                    <label for="title">Qual o título do evento?</label>
-                    <input type="text" id="title" name="title" value="{{ $event->title }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="location">Qual instituição será o evento?</label>
-                    <input type="text" id="location" name="location" value="{{ $event->location }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="cep">Qual o cep do evento?</label>
-                    <input type="text" id="cep" name="cep" value="{{ $event->cep }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="location_number">Qual o número do local do evento?</label>
-                    <input type="number" id="location_number" name="location_number" value="{{ $event->location_number }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="event_date">Data de início do evento</label>
-                    <input type="date" name="start_event_date" value="{{ $event->start_event_date }}" required>
-                    <input type="time" name="start_event_time" value="{{ $event->start_event_time }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="event_date">Data de fim do evento</label>
-                    <input type="date" name="end_event_date" value="{{ $event->end_event_date }}" required>
-                    <input type="time" name="end_event_time" value="{{ $event->end_event_time }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="description">Descrição do evento</label>
-                    <input type="text" id="description" name="description" value="{{ $event->description }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="category">Categoria do evento</label>
-                    <select id="category" name="category" required>
-                        <option value="">Selecione a categoria</option>
-                        <option value="Festa" {{ $event->category == 'Festa' ? 'selected' : '' }}>Festa</option>
-                        <option value="Show" {{ $event->category == 'Show' ? 'selected' : '' }}>Show</option>
-                        <option value="Esportes" {{ $event->category == 'Esportes' ? 'selected' : '' }}>Esportes</option>
-                        <option value="Palestra" {{ $event->category == 'Palestra' ? 'selected' : '' }}>Palestra</option>
-                        <option value="Lazer" {{ $event->category == 'Lazer' ? 'selected' : '' }}>Lazer</option>
-                        <option value="Cultura" {{ $event->category == 'Cultura' ? 'selected' : '' }}>Cultura</option>
-                        <option value="Outro" {{ $event->category == 'Outro' ? 'selected' : '' }}>Outro</option>
-                    </select>
-                </div>
-            </section>
-
-            <div class="button-container">
-                <button type="submit" class="btn btn-primary">Atualizar</button>
-                <a href="{{ route('events.show', $event->event_id) }}" class="btn btn-secondary">Cancelar</a>
+<div class="form-wrapper">
+<div class="container">
+    <div class="heading">Editar Evento</div>
+    <form action="{{ route('events.update', $event->event_id) }}" method="POST" class="form">
+        @csrf
+        @method('PUT')
+        
+        <!-- Informações Básicas -->
+        <div class="section-title">Informações do Evento</div>
+        
+        <input required class="input" type="text" name="title" id="title" placeholder="Título do evento" value="{{ $event->title }}">
+        @error('title')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <textarea required class="input" name="description" id="description" placeholder="Descrição do evento">{{ $event->description }}</textarea>
+        @error('description')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <select required class="input" name="category" id="category">
+            <option value="">Selecione a categoria</option>
+            <option value="Festa" {{ $event->category == 'Festa' ? 'selected' : '' }}>Festa</option>
+            <option value="Show" {{ $event->category == 'Show' ? 'selected' : '' }}>Show</option>
+            <option value="Esportes" {{ $event->category == 'Esportes' ? 'selected' : '' }}>Esportes</option>
+            <option value="Palestra" {{ $event->category == 'Palestra' ? 'selected' : '' }}>Palestra</option>
+            <option value="Lazer" {{ $event->category == 'Lazer' ? 'selected' : '' }}>Lazer</option>
+            <option value="Cultura" {{ $event->category == 'Cultura' ? 'selected' : '' }}>Cultura</option>
+            <option value="Outro" {{ $event->category == 'Outro' ? 'selected' : '' }}>Outro</option>
+        </select>
+        @error('category')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <!-- Local do Evento -->
+        <div class="section-title">Local do Evento</div>
+        
+        <input required class="input" type="text" name="location" id="location" placeholder="Local (BH Hall, Arena MRV...)" value="{{ $event->location }}">
+        @error('location')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <input required class="input" type="text" name="cep" id="cep" placeholder="CEP do evento" value="{{ $event->cep }}">
+        @error('cep')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <input required class="input" type="number" name="location_number" id="location_number" placeholder="Número do local" value="{{ $event->location_number }}">
+        @error('location_number')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <!-- Data e Horário -->
+        <div class="section-title">Data e Horário</div>
+        
+        <div class="datetime-row">
+            <div class="datetime-group">
+                <input required class="input datetime-input" type="date" name="start_event_date" id="start_event_date" value="{{ $event->start_event_date }}">
+                <input required class="input datetime-input" type="time" name="start_event_time" id="start_event_time" value="{{ $event->start_event_time }}">
             </div>
-        </form>
+        </div>
+        @error('start_event_date')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        @error('start_event_time')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <div class="datetime-row">
+            <div class="datetime-group">
+                <input required class="input datetime-input" type="date" name="end_event_date" id="end_event_date" value="{{ $event->end_event_date }}">
+                <input required class="input datetime-input" type="time" name="end_event_time" id="end_event_time" value="{{ $event->end_event_time }}">
+            </div>
+        </div>
+        @error('end_event_date')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        @error('end_event_time')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        
+        <div class="button-group">
+            <input class="login-button" type="submit" value="Atualizar Evento">
+            <a href="{{ route('events.show', $event->event_id) }}" class="cancel-button">Cancelar</a>
+        </div>
+    </form>
+    
+    <div class="social-account-container">
+        <span class="title">Área de Vendas</span>
     </div>
+    <span class="agreement"><a href="#">Vendedor: {{ Auth::user()->name }}</a></span>
+</div>
+</div>
 @endsection

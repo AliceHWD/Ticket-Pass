@@ -13,7 +13,6 @@ Route::get('/search', [SearchController::class, 'index']);
 Route::get('/filter', [SearchController::class, 'filter']);
 
 // Events
-Route::get('/events', [SearchController::class, 'index'])->name('events.index');
 Route::get('/events/create', [EventController::class, 'create'])->name('events.create')->middleware('seller');
 Route::get('/events/category/{category}', [EventController::class, 'category'])->name('events.category');
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
@@ -65,6 +64,15 @@ Route::get('/webhook/test/{paymentId}', function($paymentId) {
 // Histórico de Pagamentos
 Route::get('/perfil/historico-pagamento', [\App\Http\Controllers\HistoricoPagamentoController::class, 'index'])->name('historico.pagamento')->middleware('auth');
 
+// Terms and Privacy Policy
+Route::get('/terms-of-service', function () {
+    return view('terms');
+})->name('terms.show');
+
+Route::get('/privacy-policy', function () {
+    return view('policy');
+})->name('policy.show');
+
 // Jetsream
 Route::middleware([
     'auth:sanctum',
@@ -72,6 +80,6 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('profile.show');
     })->name('dashboard');
 });

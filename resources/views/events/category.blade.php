@@ -71,14 +71,15 @@
                                 <p class="card__description">{{ $event->location }} - {{ \Carbon\Carbon::parse($event->start_event_date)->format('d/m/Y') }}</p>
                             </div>
                             <div class="card__footer">
-                                @if ($event->tickets->count() > 0)
-                                    <p class="card__price">R$ {{ number_format($event->tickets->min('initial_price'), 2, ',', '.') }}</p>
+                                @if ($event->tickets->count() < 0)
+                                    <p>Consulte preços</p>
+                                @elseif ($event->tickets->count() == 1)
+                                    <p class="card__price">R$
+                                        {{ number_format($event->tickets->min('initial_price'), 2, ',', '.') }}</p>
                                 @else
-                                    <p class="card__price">Consulte preços</p>
+                                    <p class="card__price">A partir de: <br> R$
+                                        {{ number_format($event->tickets->min('initial_price'), 2, ',', '.') }}</p>
                                 @endif
-                                <form method="GET" action="/events/{{ $event->event_id }}" onclick="event.stopPropagation()">
-                                    <button type="submit" class="card__button"><i class="fas fa-eye"></i></button>
-                                </form>
                             </div>
                         </div>
                     </div>

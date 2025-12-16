@@ -1,6 +1,8 @@
 # TicketPass
 
-O projeto consiste em um sistema de venda e compra de ingressos para eventos diversos, com ambas as ações feitas pelos usuários. Qualquer usuário pode ser vendedor ou comprador e também negociar os valores entre eles.
+O TicketPass é uma plataforma de revenda de ingressos que conecta compradores e vendedores de forma simples, segura e eficiente. O sistema centraliza a negociação em um único ambiente, reduzindo riscos, melhorando a comunicação e garantindo mais praticidade durante todo o processo de compra e venda.
+
+Desenvolvido com Laravel, Jetstream, Livewire e Sanctum, o projeto foca em uma experiência fluida, com autenticação segura, gerenciamento de usuários e controle de transações, servindo também como um projeto de estudo e evolução técnica.
 
 ## Participantes
 
